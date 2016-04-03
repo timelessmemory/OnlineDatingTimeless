@@ -1,0 +1,1 @@
+define(['directives/directive1', 'directives/directive2'], function() {})
