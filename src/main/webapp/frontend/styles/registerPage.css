@@ -1,0 +1,67 @@
+.register {
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 #f1f1f1;
+}
+
+.register .h1-tite {
+    color: #ff687b;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.register .registerbar {
+    text-align:center;
+    margin-top:0px;
+}
+
+.registerbar span {
+    width: 84px;
+    height: 42px;
+    position: absolute;
+}
+
+.registerbar .leftbar {
+    left: 14px;
+    background : url(../images/registerbar.png) no-repeat;
+}
+
+.registerbar .rightbar {
+    right: 10px;
+    top: 20px;
+    background: url(../images/registerbar.png) no-repeat -92px 0;
+}
+
+.register .man {
+    margin-right: 20px;
+    padding-left: 28px;
+    background: url(../images/sex.png) 5px 0px no-repeat;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+.register .woman {
+    padding-left: 28px;
+    background: url(../images/sex.png) 5px -32px no-repeat;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+.register .tip {
+    margin-left: 50px;
+    font-size: 12px;
+    color: rgb(171, 171, 171);
+    font-weight: 100;
+}
+
+select {
+    width : 116px;
+}
+
+.register .selectDate select {
+    display: block;
+    float: left;
+    margin-top: -4px;
+}

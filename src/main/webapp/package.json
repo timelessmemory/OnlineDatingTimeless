@@ -1,8 +1,8 @@
 {
-  "name": "AngularAndRequire",
+  "name": "Online Dating WebSite Timeless",
   "version": "0.1.0",
-  "description" : "AngularAndRequire1.0",
-  "author": "Mario.Li",  
+  "description" : "Timeless Online Dating WebSite 1.0",
+  "author": "Mario.Li",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-requirejs": "~0.4.4",

@@ -1,0 +1,18 @@
+<div class="selectDate">
+  <div style="float:left;font-weight:700;">{{attributeName}}</div>
+  <div> 
+    <select class="btn btn-info btn-sm" ng-change="changeYear()" ng-model="ngModel.year" ng-options="y for y in years" style="margin-left:50px;">
+      <option value="">年</option>
+    </select>
+  </div>
+  <div> 
+    <select class="btn btn-info btn-sm" ng-change="changeMonth()" ng-model="ngModel.month" ng-options="m for m in months" style="margin-left:2px;">
+      <option value="">月</option>
+    </select>
+  </div>
+  <div> 
+    <select class="btn btn-info btn-sm" ng-change="changeDay()" ng-model="ngModel.day" ng-options="d for d in days" style="margin-left:2px;">
+      <option value="">日</option>
+    </select> 
+  </div>
+</div>

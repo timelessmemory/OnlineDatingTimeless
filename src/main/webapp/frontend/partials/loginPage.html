@@ -1,0 +1,41 @@
+<div class="container login">
+    <image src="frontend/images/loginLogo.png" class="loginLogo" />
+    <div class="col-sm-6 col-sm-offset-2 div">
+        <form name="loginForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group" ng-class="{'has-error':loginForm.mobile.$invalid && !loginForm.mobile.$pristine}">
+                <label>手机号</label>
+                <input type="text" name="mobile" class="form-control" ng-model="user.mobile" required />
+                <p ng-show="loginForm.mobile.$error.required && !loginForm.mobile.$pristine" 
+                    class="help-block">
+                    <label class="glyphicon glyphicon-exclamation-sign"></label>手机号是必须的.
+                </p>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error':loginForm.passord.$invalid && !loginForm.passord.$pristine}">
+                <label>密码</label>
+                <input type="password" name="passord" class="form-control" ng-model="user.passord" required />
+                <p ng-show="loginForm.passord.$error.required && !loginForm.passord.$pristine" 
+                    class="help-block">
+                    <label class="glyphicon glyphicon-exclamation-sign"></label>密码是必须的.
+                </p>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error':loginForm.verifyCode.$invalid && !loginForm.verifyCode.$pristine}">
+                <label>验证码</label>
+                <input type="text" name="verifyCode" class="form-control" ng-model="user.verifyCode" required />
+                <p ng-show="loginForm.verifyCode.$error.required && !loginForm.verifyCode.$pristine" 
+                    class="help-block">
+                    <label class="glyphicon glyphicon-exclamation-sign"></label>验证码是必须的.
+                </p>
+            </div>
+
+            <button style="margin-bottom:30px;margin-top:30px;" class="btn btn-primary btn-info btn-block" ng-disabled="loginForm.$invalid">快速登录
+            </button>
+
+            <div class="add">
+                <a ui-sref="registerPage">还不是会员？立即注册</a>
+                <a ui-sref="forgetPasswordPage" class="forgetPassword">忘记密码?</a>
+            </div>
+        </form>
+    </div><!-- col-sm-8 -->
+</div><!-- container -->

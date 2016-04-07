@@ -5,7 +5,11 @@ require.config({
         'jquery': 'libs/jquery.min',
         'angular': 'libs/angular',
         'ui-router': 'libs/angular-ui-router',
-        //js文件
+        'angular-animate' : 'libs/angular-animate',
+        'bootstrap-min' : 'libs/bootstrap.min',
+        'ui-bootstrap-tpls' : 'libs/ui-bootstrap-tpls-0.14.3',
+
+        //自定义js文件
         'bootstrap': "bootstrap",
         'app': "app",
         'router' : "config/router",
@@ -17,9 +21,19 @@ require.config({
         'angular' : {
             exports : 'angular'
         },
-        'ui-router': {
+        'ui-router' : {
             deps : ['angular'],
             exports : 'angular'
+        },
+        'angular-animate' : {
+            deps : ['angular'],
+            exports : 'angular'
+        },
+        'bootstrap-min' : {
+            deps : ['jquery'],
+        },
+        'ui-bootstrap-tpls' : {
+            deps : ['angular'],
         }
     },
     deps : ['bootstrap'],

@@ -1,1 +1,3 @@
-define(['directives/directive1', 'directives/directive2'], function() {})
+define(['directives/modal', 'directives/mobileFormat', 'directives/passwordFormat', 'directives/equalTo', 'directives/custDate'], function() {
+	
+})
