@@ -7,6 +7,10 @@ define(['app'], function(app) {
                 'indexView' : {
                     templateUrl: 'frontend/partials/homePage.html',
                     controller : 'homePageCtrl'
+                },
+                'navigationBarView' : {
+                    templateUrl: 'frontend/partials/navigationBar.html',
+                    controller : 'navigationBarCtrl'
                 }
             }
         })
@@ -16,6 +20,10 @@ define(['app'], function(app) {
                 'indexView' : {
                     templateUrl: 'frontend/partials/profilePage.html',
                     controller : 'profilePageCtrl'
+                },
+                'navigationBarView' : {
+                    templateUrl: 'frontend/partials/navigationBar.html',
+                    controller : 'navigationBarCtrl'
                 }
             }
         })
@@ -25,6 +33,10 @@ define(['app'], function(app) {
                 'indexView' : {
                     templateUrl: 'frontend/partials/albumPage.html',
                     controller : 'albumPageCtrl'
+                },
+                'navigationBarView' : {
+                    templateUrl: 'frontend/partials/navigationBar.html',
+                    controller : 'navigationBarCtrl'
                 }
             }
         })
@@ -34,6 +46,10 @@ define(['app'], function(app) {
                 'indexView' : {
                     templateUrl: 'frontend/partials/settingPage.html',
                     controller : 'settingPageCtrl'
+                },
+                'navigationBarView' : {
+                    templateUrl: 'frontend/partials/navigationBar.html',
+                    controller : 'navigationBarCtrl'
                 }
             }
         })
@@ -43,6 +59,10 @@ define(['app'], function(app) {
                 'indexView' : {
                     templateUrl: 'frontend/partials/loginPage.html',
                     controller : 'loginPageCtrl'
+                },
+                'navigationBarView' : {
+                    templateUrl: 'frontend/partials/navigationBar.html',
+                    controller : 'navigationBarCtrl'
                 }
             }
         }).state('registerPage', {
@@ -51,6 +71,10 @@ define(['app'], function(app) {
                 'indexView' : {
                     templateUrl: 'frontend/partials/registerPage.html',
                     controller : 'registerPageCtrl'
+                },
+                'navigationBarView' : {
+                    templateUrl: 'frontend/partials/navigationBar.html',
+                    controller : 'navigationBarCtrl'
                 }
             }
         });

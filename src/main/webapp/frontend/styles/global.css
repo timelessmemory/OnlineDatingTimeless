@@ -13,6 +13,7 @@ body {
     font-family: "微软雅黑", "宋体";
     height: 100%;
 }
+
 .form-control {
     background-color: transparent;
 }
@@ -138,104 +139,3 @@ body {
 } /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
 
 /*scrollbar end*/
-
-/*menubar=================================================================*/
-
-.cls {
-    clear: both;
-}
-
-a:focus {
-    outline: none;
-}
-
-.menubar {
-    height: 48px;
-    display: block;
-    padding: 0px;
-    width: 100%;
-    margin: 0px auto 0 auto;
-    padding-left: 50px;
-}
-
-.menubar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menubar ul li {
-    float: left;
-    overflow: hidden;
-    position: relative;
-    line-height: 48px;
-    text-align: center;
-}
-
-.menubar ul li a {
-    position: relative;
-    display: block;
-    width: 200px;
-    height: 48px;
-    font-family: "微软雅黑", "宋体";
-    font-size: 14px;
-    text-decoration: none;
-    cursor: pointer;
-    font-weight: bold;
-    line-height: 48px;
-}
-
-.menubar ul li a span {
-    position: absolute;
-    left: 0;
-    width: 200px;
-}
-
-.menubar ul li a span.out {
-    top: 0px;
-}
-
-.menubar ul li a span.over, .menubar ul li a span.bg {
-    top: -48px;
-}
-
-#menubar {
-    background-image: url(../images/s_03.jpg);
-    background-repeat: repeat;
-}
-
-#menubar ul li a {
-    color: #FFFFFF;
-}
-
-#menubar ul li a span.over {
-    color: #FFF;
-    height: 48px;
-    width: 200px;
-    background: #fe9901;
-}
-
-.menubar .logo {
-    cursor: pointer;
-    display: block;
-    width: 298px;
-    height: 40px;
-    background-image: url(../images/logo.png);
-    margin-right: 15px;
-}
-
-.setting {
-    margin-right: 15px;
-}
-
-.menubar .btn-info {
-    background-color: transparent;
-    border-color: transparent;
-}
-
-.menubar .glyphicon {
-    cursor: pointer;
-    top: 2px;
-    right: 3px;
-}
-/*menubar end*/

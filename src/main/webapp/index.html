@@ -8,8 +8,10 @@
         <link rel="shortcut icon" href="favicon.ico" />
     	<link rel="stylesheet" href="frontend/libs/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="frontend/styles/global.css">
+        <link rel="stylesheet" type="text/css" href="frontend/styles/navigationBar.css">
         <link rel="stylesheet" type="text/css" href="frontend/styles/registerPage.css">
-    	<link rel="stylesheet" type="text/css" href="frontend/styles/loginPage.css">
+        <link rel="stylesheet" type="text/css" href="frontend/styles/loginPage.css">
+    	<link rel="stylesheet" type="text/css" href="frontend/styles/homePage.css">
     </head>
     <body>
         <!--model-->
@@ -19,48 +21,12 @@
 
         <!--mask-->
         <div id="mask-loading" class="mask-loading" ng-if="loading" 
-            style="background-color: rgba(0, 0, 0, 0.17);">
+            style="background-color: rgba(0, 0, 0, 0);">
             <div class="loading-icon"></div>
         </div>
 
-        <!--navigationbar-->
-        <div id="menubar" class="menubar" ng-controller="globalCtrl">
-            <ul>
-                <li><span class="logo" ng-click="goHomePage()"></span></li>
-                <li>
-                    <a ui-sref="homePage"><label class="glyphicon glyphicon-home"></label>主页</a>
-                </li>
-                <li>
-                    <a ui-sref="profilePage"><label class="glyphicon glyphicon-file"></label>个人资料</a>
-                </li>
-                <li>
-                    <a ui-sref="albumPage"><label class="glyphicon glyphicon-picture"></label>个人相册</a>
-                </li>
-                <li>
-                    <a ui-sref="settingPage" class="setting">
-                        <label class="glyphicon glyphicon-asterisk"></label>设置
-                    </a>
-                </li>
-                <li>
-                    <div class="btn btn-info" ng-click="goLogin()">
-                        <label class="glyphicon glyphicon-log-in"></label>登录
-                    </div>
-                </li>
-                <li>
-                    <div class="btn btn-info" ng-click="goRegister()">
-                        <label class="glyphicon glyphicon-send"></label>注册
-                    </div>
-                </li>
-                <li ng-if="false">
-                    <button class="btn btn-info" ng-click="goLogout()">
-                        <label class="glyphicon glyphicon-off"></label>注销
-                    </button>
-                </li>
-            </ul>
-            <div class="cls"></div>
-        </div>
-
         <!--view-->
+        <div ui-view="navigationBarView"></div>
         <div class="page" ui-view="indexView"></div>
     </body>
     <script type="text/javascript" data-main="frontend/config/main" 

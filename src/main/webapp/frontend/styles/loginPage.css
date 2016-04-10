@@ -27,3 +27,13 @@
     margin-left: -730px;
     margin-top: 18px;
 }
+
+#svc {
+    width: 100px;
+    height: 20px;
+    margin-left: 440px;
+}
+
+.login .refresh {
+    cursor: pointer;
+}

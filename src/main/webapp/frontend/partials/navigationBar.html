@@ -1,0 +1,36 @@
+<!--navigationbar-->
+<div id="menubar" class="menubar">
+    <ul>
+        <li><span class="logo" ng-click="goHomePage()"></span></li>
+        <li>
+            <a ui-sref="homePage"><label class="glyphicon glyphicon-home"></label>主页</a>
+        </li>
+        <li>
+            <a ui-sref="profilePage"><label class="glyphicon glyphicon-file"></label>个人资料</a>
+        </li>
+        <li>
+            <a ui-sref="albumPage"><label class="glyphicon glyphicon-picture"></label>个人相册</a>
+        </li>
+        <li>
+            <a ui-sref="settingPage" class="setting">
+                <label class="glyphicon glyphicon-asterisk"></label>设置
+            </a>
+        </li>
+        <li>
+            <div class="btn btn-info" ng-click="goLogin()">
+                <label class="glyphicon glyphicon-log-in"></label>登录
+            </div>
+        </li>
+        <li>
+            <div class="btn btn-info" ng-click="goRegister()">
+                <label class="glyphicon glyphicon-send"></label>注册
+            </div>
+        </li>
+        <li ng-if="isLogin">
+            <button class="btn btn-info" ng-click="goLogout()">
+                <label class="glyphicon glyphicon-off"></label>注销
+            </button>
+        </li>
+    </ul>
+    <div class="cls"></div>
+</div>

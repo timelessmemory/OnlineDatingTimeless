@@ -1,5 +1,203 @@
-<div class="container" style="height:100%;">
-    <div class="col-sm-8 col-sm-offset-2">
-		<h2>homePage</h2>
-    </div><!-- col-sm-8 -->
-</div><!-- container -->
+<div class="container home">
+
+  <div style="width:91%;margin-top:30px;margin-left:60px;">
+    <uib-carousel interval="myInterval">
+      <uib-slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}">
+        <div class="carousel-caption">
+          <p>{{slide.text}}</p>
+        </div>
+      </uib-slide>
+    </uib-carousel>
+  </div>
+
+  <uib-tabset>
+    <uib-tab heading="条件搜缘">
+          <div class="col-sm-12">
+              <form name="searchForm" ng-submit="submitForm()" novalidate>
+                  <div class="row" style="margin-bottom:10px;">
+                    <div class="col-sm-3">
+                      <p style="display:inline-block;padding: 2px 5px;">
+                        <span class="glyphicon glyphicon-search"></span><b>我想找符合以下条件的</b>
+                      </p>
+                    </div>
+                    <div class="col-sm-9">
+                      <div> 
+                          <select class="btn btn-info btn-sm" style="margin-top:-3px;margin-left:-103px;" ng-model="formData.gender">
+                            <option value="man">男朋友</option>
+                            <option value="woman">女朋友</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="search-title">年龄</div>
+                      <div>
+                          <select class="btn btn-info btn-sm" ng-model="formData.birthFrom" ng-options="f for f in fbs">
+                            <option value="">不要求</option>
+                          </select>
+                          <label style="display:inline-block;float:left;padding-top:8px;">~</label>
+                          <select class="btn btn-info btn-sm" ng-model="formData.birthTo" ng-options="f for f in tbs">
+                            <option value="">不要求</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="selectLocation">
+                        <div class="search-title">居住地</div>
+                        <div> 
+                          <select class="btn btn-info btn-sm" ng-change="changeCountry()" ng-options="C.name for C in countryList" ng-model="cp.country">
+                            <option value="">国家</option>
+                          </select>
+                        </div>
+                        <div> 
+                          <select class="btn btn-info btn-sm" ng-change="changeProvince()" ng-options="p.name for p in cp.country.province" ng-model="cp.province" style="margin-left:2px;">
+                            <option value="">省份/直轄市</option>
+                          </select>
+                        </div>
+                        <div> 
+                          <select class="btn btn-info btn-sm" ng-change="changeCity()" ng-model="formData.city" ng-options="c for c in cp.province.city" style="margin-left:2px;">
+                            <option value="">市</option>
+                          </select> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="search-title">身高</div>
+                      <div>
+                          <select class="btn btn-info btn-sm" ng-model="formData.fromStature" ng-options="f for f in fs">
+                            <option value="">不要求</option>
+                          </select>
+                          <label style="display:inline-block;float:left;padding-top:8px;">~</label>
+                          <select class="btn btn-info btn-sm" ng-model="formData.toStature" ng-options="f for f in ts">
+                            <option value="">不要求</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top:12px;">
+                    <div class="col-sm-3" style="margin-top:8px;">
+                      <a href="#" class="pink">开通永恒会员</a>
+                      可使用更多条件
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="search-title">学历</div>
+                          <div>
+                              <select ng-disabled="!isVIP" class="btn btn-info btn-sm" ng-model="formData.education">
+                                <option value="">不要求</option>
+                                <option value="初中及以下">初中及以下</option>
+                                <option value="中专">中专</option>
+                                <option value="高中">高中</option>
+                                <option value="大专">大专</option>
+                                <option value="本科">本科</option>
+                                <option value="研究生">研究生</option>
+                                <option value="博士及以上">博士及以上</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="search-title">收入</div>
+                          <div>
+                              <select ng-disabled="!isVIP" class="btn btn-info btn-sm" ng-model="formData.salaryRange">
+                                <option value="">不要求</option>
+                                <option value="500">0~1000</option>
+                                <option value="2000">1000~3000</option>
+                                <option value="4000">3000~5000</option>
+                                <option value="6500">5000~8000</option>
+                                <option value="9000">8000~10000</option>
+                                <option value="12500">10000~15000</option>
+                                <option value="17500">15000~20000</option>
+                                <option value="20000">20000以上</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <button class="btn btn-sm btn-info" style="margin-top: 4px;">
+                            快速查找
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+          </div>
+    </uib-tab>
+    <uib-tab heading="昵称查询" select="select()">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="search-wrapper">
+              <div class="pull-left search-input-container">
+                <input id="nickname" type="text" class="form-control" placeholder="昵称" maxlength="30" 
+                ng-model="search.nickname" />
+              </div>
+              <div class="pull-left search-icon-container" ng-click="search()">
+                <div class="glyphicon glyphicon-search search-icon"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </uib-tab>
+  </uib-tabset>
+
+  <div class="col-sm-12" style="margin-left:52px;">
+    <div class="row">
+      <div class="col-sm-4" ng-repeat="item in members">
+        <div class="row" style="margin-top:60px;">
+          <div class="col-sm-4">
+            <a href="#" style="cursor:pointer;">
+              <img class="img-rounded image-photo" ng-src="{{ item.profile.photo }}" />
+            </a>
+          </div>
+          <div class="col-sm-8">
+            <div class="row">
+              <div class="col-sm-12">
+                <label>{{item.profile.nickname}}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label>{{item.profile.age}}岁</label>
+              </div>
+              <div class="col-sm-8 col-address">
+                <label>{{item.profile.province}} {{item.profile.city}} </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-7">
+                <label>{{item.profile.education}}</label>
+              </div>
+              <div class="col-sm-5 col-salary" ng-switch="item.profile.salary">
+                <label ng-switch-when="500">0~1000</label>
+                <label ng-switch-when="2000">1000~3000</label>
+                <label ng-switch-when="4000">3000~5000</label>
+                <label ng-switch-when="6500">5000~8000</label>
+                <label ng-switch-when="9000">8000~10000</label>
+                <label ng-switch-when="12500">10000~15000</label>
+                <label ng-switch-when="17500">15000~20000</label>
+                <label ng-switch-when="20000">20000以上</label>
+                <label ng-switch-default>未知</label>
+              </div>
+            </div>
+            <div class="row go-home">
+              <button class="btn btn-sm btn-info" style="margin-left: 15px;margin-top:5px;">
+                <span class="glyphicon glyphicon-home"></span> &nbsp;去看看
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="row" style="margin-left:350px;">
+    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages">
+    </uib-pagination>
+    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+  </div>
+</div>
