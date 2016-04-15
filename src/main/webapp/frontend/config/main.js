@@ -8,6 +8,7 @@ require.config({
         'angular-animate' : 'libs/angular-animate',
         'bootstrap-min' : 'libs/bootstrap.min',
         'ui-bootstrap-tpls' : 'libs/ui-bootstrap-tpls-0.14.3',
+        'angular-file-upload' : 'libs/angular-file-upload.min',
 
         //自定义js文件
         'bootstrap': "bootstrap",
@@ -33,6 +34,9 @@ require.config({
             deps : ['jquery'],
         },
         'ui-bootstrap-tpls' : {
+            deps : ['angular'],
+        },
+        'angular-file-upload' : {
             deps : ['angular'],
         }
     },

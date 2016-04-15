@@ -1,0 +1,40 @@
+.settingMode a {
+  color: #2F222C;
+}
+
+.settingMode {
+    background-color: #FFFCF4;
+    margin-top: 68px;
+    margin-left: 90px;
+    border-radius: 9px;
+}
+
+.settingMode .nav-tabs>li.active>a {
+  color: #cc8f14;
+  border:none;
+}
+
+.nav-tabs {
+  border:none;
+}
+
+.settingMode li {
+  margin-top: 19px;
+}
+
+.settingMode .tab-pane {
+  width: 1000px;
+  height: 500px;
+}
+
+.settingMode .nav-tabs, .settingMode .tab-content {
+  float: left;
+}
+
+.settingMode .breadcrumb li {
+  margin-top: 0px;
+}
+
+.settingMode .breadcrumb {
+  margin-top: 21px;
+}

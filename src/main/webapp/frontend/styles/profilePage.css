@@ -1,0 +1,264 @@
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+.form-views.ng-enter,
+.form-views.ng-leave { 
+    position:absolute; 
+    left:30px; 
+    right:30px;
+    transition:0.5s all ease;
+    -moz-transition:0.5s all ease; 
+    -webkit-transition:0.5s all ease; 
+}
+     
+/* enter animation */
+.form-views.ng-enter { 
+    -webkit-animation:slideInRight 0.5s both ease;
+    -moz-animation:slideInRight 0.5s both ease;
+    animation:slideInRight 0.5s both ease; 
+}
+ 
+/* leave animation */
+.form-views.ng-leave {
+    -webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;   
+}
+ 
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {    
+    to { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to { -webkit-transform: translateX(-200%); }
+}
+ 
+/* slide in from the right */
+@keyframes slideInRight {
+    from { transform:translateX(200%); }
+    to { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from { -moz-transform:translateX(200%); }
+    to { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from { -webkit-transform:translateX(200%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+.profile .head {
+  color: white;
+  background: url(../images/woman_bg.jpg) center top no-repeat #331344;
+  width: 100%;
+  height: 320px;
+}
+
+.profile strong {
+    font-size: 28px;
+    color: #fff;
+    float: left;
+    font-weight: normal;
+    font-family: "微软雅黑";
+}
+
+.profile .icon a {
+    width: 24px;
+    height: 24px;
+    display: block;
+    float: left;
+    margin:11px -25px 14px 31px;
+    cursor: auto;
+    text-decoration: none;
+    outline: none;
+}
+
+.profile .icon001 {
+  background: url(../images/icons.png) -139px -238px no-repeat;
+}
+
+.profile .icon002 {
+  background: url(../images/icons.png) -139px -272px no-repeat;
+}
+
+.profile .body {
+  background-color:white;
+  width:100%;
+  margin-top:20px;
+}
+
+.profile .title-main {
+    font-size: 14px;
+    color: #FF7DA9;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 0 0 26px;
+    background: #F6F6F6;
+    font-weight: bold;
+}
+
+.profile .small-title {
+  color: #7B7B7B;
+  padding-left: 36px;
+}
+
+.profile ol {
+  float: left;
+  width: 348px;
+  font-size: 12px;
+  font-family: "宋体";
+  color: #666;
+  list-style: none;
+  outline: none;
+}
+
+.profile li {
+  color: #999999;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.profile .black {
+  color: #4D4D4D;
+  font-size: 14px;
+}
+
+.profile .modify-body {
+  background-color:white;
+  width:100%;
+  margin-top:20px;
+}
+
+.profile .modify-body ol {
+  width: 100%;
+}
+
+.profile .form-control {
+  display: inline-block;
+  width: 15%;
+  height: 28px;
+  margin-left: 5px;
+}
+
+.profile .modify-body .key, .profile .modify-body select{
+  display: inline-block;
+}
+
+.profile .modify-body .help-tip {
+  color: #a94442;
+}
+
+.profile .top-distance {
+  margin-top:12px;
+}
+
+.profile .upload-part {
+  background-color: white;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.profile .upload-part .photo-part {
+  border: 1px solid #eee;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.profile .upload-part .photo-part-content {
+  padding: 10px;
+}
+
+.profile .upload-part .img-prev {
+  width: 174px;
+  height: 214px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 214px;
+  color: #a3a3a3;
+  margin-left: 13px;
+}
+
+.profile .upload-mask-wrap {
+  position: relative;
+}
+
+.profile .upload-mask {
+  opacity: 0;
+  position: absolute;
+  margin-top: 20px;
+  top: 0px;
+  cursor: pointer;
+  z-index: 10;
+  width: 200px;
+  height: 30px;
+}
+
+.profile .upload-btn {
+  width: 200px;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.profile .modal-upload-btn {
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.profile .form-views { 
+    background-color: #F4F9FF;
+    margin-top: 35px;
+    width:auto; 
+    border-radius: 5px;
+}
+
+.profile .form-container { 
+      margin-bottom: 50px;
+      margin-top: 45px;
+      border-radius: 5px;
+}
+
+.profile .form-container .page-header { 
+    background: #4BD3B8; 
+    margin:0; 
+    padding:30px; 
+    border-top-left-radius:5px; 
+    border-top-right-radius:5px; 
+}
+ 
+.profile .status-buttons a { 
+    color:#FFF; 
+    display:inline-block; 
+    font-size:12px; 
+    margin-right:10px; 
+    text-align:center; 
+    text-transform:uppercase; 
+}
+
+.profile .status-buttons a:hover { 
+    text-decoration:none; 
+}
+ 
+.profile .status-buttons span { 
+    background:#080808; 
+    display:block; 
+    height:30px; 
+    margin:0 auto 10px; 
+    padding-top:7px; 
+    width:30px; 
+    border-radius:50%; 
+}
+ 
+.profile .status-buttons a.active span { 
+    background:#00BC8C; 
+}
+
+.profile .next-btn {
+    margin-top: 27px;
+    margin-bottom: 41px;
+}

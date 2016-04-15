@@ -1,0 +1,25 @@
+<div>
+	<a href="javascript:void(0);" class="zoom">
+	  <img ng-src="{{url}}" />
+	</a>
+	<div class="description" title="{{description}}">
+		{{description}}
+	</div>
+	<div ng-if="isManageMode" class="row">
+		<div class="col-sm-2" style="margin: 2px 0px 0px 13px;">
+        	<input type="checkbox" ng-class="{'check-item-select':vm.tag,'check-item-unselect':!vm.tag}" ng-model="vm.tag" ng-click="select()">
+		</div>
+		<div class="col-sm-3" style="margin-top:3px;margin-left:-23px;">
+        	<span ng-click="selectas()" style="cursor:pointer;">选择</span>
+		</div>
+		<div class="col-sm-2 col-sm-offset-4">
+			<button ng-if="!vm.isEdit" class="btn btn-default btn-xs" ng-click="edit()" style="margin-top:4px;">编辑</button>
+			<button ng-if="vm.isEdit" class="btn btn-default btn-xs" ng-click="cancel()" style="margin-top:4px;">取消</button>
+		</div>
+	</div>
+	<div class="fadecss form-group" style="margin-top:8px;margin-left:12px;" ng-if="vm.isEdit">
+		<label>描述:</label>
+		<input type="text" class="form-control" style="display:inline-block;width:63%;height:27px;" ng-model="vm.des" />
+		<button class="btn btn-default btn-xs" ng-click="modify()">确定</button>
+	</div>
+</div>

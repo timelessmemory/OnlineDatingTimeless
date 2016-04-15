@@ -27,6 +27,27 @@ define(['app'], function(app) {
                 }
             }
         })
+        .state('profilePage.showProfile', {
+            url: '/showProfile',
+            templateUrl: 'frontend/partials/profileShowFragment.html',
+        })
+        .state('profilePage.modifyProfile', {
+            url: '/modifyProfile',
+            templateUrl: 'frontend/partials/profileModifyFragment.html',
+        })
+
+        .state('profilePage.modifyProfile.selfState', {
+            url: '/selfState',
+            templateUrl: 'frontend/partials/form-selfState.html',
+        })
+        .state('profilePage.modifyProfile.detailProfile', {
+            url: '/detailProfile',
+            templateUrl: 'frontend/partials/form-detailProfile.html',
+        })
+        .state('profilePage.modifyProfile.wantHalf', {
+            url: '/wantHalf',
+            templateUrl: 'frontend/partials/form-wantHalf.html',
+        })
         .state('albumPage', {
             url: '/albumPage',
             views : {

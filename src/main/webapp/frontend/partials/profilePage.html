@@ -1,5 +1,87 @@
-<div class="container" style="height:100%;">
-    <div class="col-sm-8 col-sm-offset-2">
-		<h2>profilePage</h2>
-    </div><!-- col-sm-8 -->
-</div><!-- container -->
+<div class="container profile">
+  <div class="row head">
+    <div class="col-sm-12" style="margin-left:100px;margin-top:57px;">
+      <div class="row">
+        <div class="col-sm-2">
+          <img ng-src="{{tmpAvatar}}" style="width:174px;height:214px;" />
+        </div>
+        <div class="col-sm-10" style="margin-top:54px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <strong>{{profile.nickname}}</strong>
+              <span class="icon" ng-if="!isVisit">
+                <a href="#" data-toggle="modal" data-target="#photoModal" title="头像上传" class="icon001"></a>
+                <a href="javascript:void(0);" ui-sref="profilePage.modifyProfile.selfState" ng-click="modify()" title="资料完善" class="icon002"></a>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12" ng-switch="profile.salary">
+              <label>
+                {{profile.country ? profile.country : ''}}
+                {{profile.province ? profile.province : ''}}
+                {{profile.city ? profile.city : ''}}
+              </label>
+              <label>{{profile.age}}岁</label>
+              <label ng-switch-when="500">0~1000元</label>
+              <label ng-switch-when="2000">1000~3000元</label>
+              <label ng-switch-when="4000">3000~5000元</label>
+              <label ng-switch-when="6500">5000~8000元</label>
+              <label ng-switch-when="9000">8000~10000元</label>
+              <label ng-switch-when="12500">10000~15000元</label>
+              <label ng-switch-when="17500">15000~20000元</label>
+              <label ng-switch-when="20000">20000元以上</label>
+              <label ng-switch-default></label>
+              <label>{{profile.education ? profile.education : ''}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--photoModal-->
+  <div class="modal fade" id="photoModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">头像上传</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row upload-part">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="photo-part">
+                      <div class="photo-part-content">
+                        <img class="img-prev" alt="174 X 214" ng-src="{{profile.avatar}}" ng-model="profile.avatar" />
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-6" style="margin-top:74px;">
+                  <div wm-file-upload ng-model="profile.avatar" is-finish="setting.isFinish">
+                      <button class="btn btn-success upload-btn">
+                        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>上传
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success modal-upload-btn" ng-click="cancelUpload()" ng-if="setting.isFinish=='true'">
+            <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>取消
+          </button>
+          <button class="btn btn-success modal-upload-btn" ng-click="confirmUpload()" ng-if="setting.isFinish=='true'">
+            <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>确定
+          </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div ui-view=""></div>
+  
+</div>

@@ -11,9 +11,19 @@
         <link rel="stylesheet" type="text/css" href="frontend/styles/navigationBar.css">
         <link rel="stylesheet" type="text/css" href="frontend/styles/registerPage.css">
         <link rel="stylesheet" type="text/css" href="frontend/styles/loginPage.css">
-    	<link rel="stylesheet" type="text/css" href="frontend/styles/homePage.css">
+        <link rel="stylesheet" type="text/css" href="frontend/styles/homePage.css">
+        <link rel="stylesheet" type="text/css" href="frontend/styles/profilePage.css">
+        <link rel="stylesheet" type="text/css" href="frontend/styles/albumPage.css">
+    	<link rel="stylesheet" type="text/css" href="frontend/styles/settingPage.css">
     </head>
-    <body>
+    <body ng-controller="globalCtrl">
+        <!--go to top-->
+        <go-to-top min-height="300"></go-to-top>
+
+        <!--msg box-->
+        <msg-box content="{{msg.content}}" type="{{msg.type}}" class="msg-box">
+        </msg-box>
+
         <!--model-->
         <modal modal-title="{{modalTitle}}" modal-body="{{modalBody}}" 
             confirm="confirm()">

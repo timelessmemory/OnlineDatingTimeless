@@ -1,0 +1,117 @@
+<div class="row small-title">
+  <div class="col-sm-12">
+    <h3>详细资料</h3>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <ol>
+          <li>真实姓名：
+            <input type="text" class="form-control" ng-model="profile.realName" uib-tooltip="真实姓名" tooltip-placement="top" />
+          </li>
+          <li class="top-distance">身 高：
+            <input type="text" class="form-control" name="stature" ng-model="profile.stature" uib-tooltip="身高" tooltip-placement="top" stature-format />
+            <span ng-if="profile.stature">cm</span></span>
+            <span ng-if="profileForm.stature.$error.stature" class="help-tip">
+              <label class="glyphicon glyphicon-exclamation-sign"></label>身高必须是120~200的数字
+            </span>
+          </li>
+          <li class="top-distance">体 重：
+            <input type="text" class="form-control" name="weight" ng-model="profile.weight" uib-tooltip="体重" tooltip-placement="top" weight-format />
+            <span ng-if="profile.weight">斤</span>
+            <span>
+              <span ng-if="profileForm.weight.$error.weight" class="help-tip">
+                <label class="glyphicon glyphicon-exclamation-sign"></label>体重必须是50~500的数字
+              </span>
+            </span>
+          </li>
+          <li class="top-distance">职 业：<input type="text" class="form-control" ng-model="profile.job" 
+            uib-tooltip="职业" tooltip-placement="top">
+          </li>
+          <li class="top-distance">喜欢的异性类型：<input type="text" class="form-control" ng-model="profile.wantType" uib-tooltip="喜欢的异性类型" tooltip-placement="top" style="width: 237px;" />
+          </li>
+          <li>
+            <span class="key top-distance">居住地：<span>
+            <select class="btn btn-info btn-sm" ng-change="changeCountry()" ng-options="C.name for C in countryList" ng-model="cp.country">
+              <option value="">国家</option>
+            </select>
+            <select class="btn btn-info btn-sm" ng-change="changeProvince()" ng-options="p.name for p in cp.country.province" ng-model="cp.province">
+              <option value="">省份/直轄市</option>
+            </select>
+            <select class="btn btn-info btn-sm" ng-change="changeCity()" ng-model="profile.city" ng-options="c for c in cp.province.city">
+              <option value="">市</option>
+            </select> 
+          </li>
+          
+          <li style="margin-top:26px;">学 历：
+            <select class="btn btn-info btn-sm" ng-model="profile.education">
+              <option value="">不填</option>
+              <option value="初中及以下">初中及以下</option>
+              <option value="中专">中专</option>
+              <option value="高中">高中</option>
+              <option value="大专">大专</option>
+              <option value="本科">本科</option>
+              <option value="研究生">研究生</option>
+              <option value="博士及以上">博士及以上</option>
+            </select>
+          </li>
+          <li class="top-distance">月 薪：
+            <select class="btn btn-info btn-sm" ng-model="profile.salary">
+              <option value="">不填</option>
+              <option value="500">0~1000</option>
+              <option value="2000">1000~3000</option>
+              <option value="4000">3000~5000</option>
+              <option value="6500">5000~8000</option>
+              <option value="9000">8000~10000</option>
+              <option value="12500">10000~15000</option>
+              <option value="17500">15000~20000</option>
+              <option value="20000">20000以上</option>
+            </select>
+          </li>
+          <li class="top-distance">是否想要小孩：
+            <select class="btn btn-info btn-sm" ng-model="profile.isNeedChild">
+              <option value="">不填</option>
+              <option value="是">是</option>
+              <option value="否">否</option>
+            </select>
+          </li>
+          <li class="top-distance">婚姻：
+            <select class="btn btn-info btn-sm" ng-model="profile.marriage">
+              <option value="">不填</option>
+              <option value="已婚">已婚</option>
+              <option value="未婚">未婚</option>
+              <option value="丧偶">丧偶</option>
+            </select>
+          </li>
+          <li class="top-distance">住房：
+            <select class="btn btn-info btn-sm" ng-model="profile.house">
+              <option value="">不填</option>
+              <option value="租房">租房</option>
+              <option value="有房">有房</option>
+              <option value="无房">无房</option>
+            </select>
+          </li>
+          <li class="top-distance">能否接受异地恋：
+            <select class="btn btn-info btn-sm" ng-model="profile.isAcceptDf">
+              <option value="">不填</option>
+              <option value="接受">接受</option>
+              <option value="不接受">不接受</option>
+            </select>
+          </li>
+          <li class="top-distance">是否愿意与父母同住：
+            <select class="btn btn-info btn-sm" ng-model="profile.isWillingTl">
+              <option value="">不填</option>
+              <option value="愿意">愿意</option>
+              <option value="不愿意">不愿意</option>
+            </select>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <a ui-sref="profilePage.modifyProfile.wantHalf" class="btn btn-block btn-info next-btn">
+            Next Section <i class="icon-arrow-right"></i>
+        </a>
+    </div>
+</div>

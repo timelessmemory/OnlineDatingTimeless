@@ -1,5 +1,75 @@
-<div class="container" style="height:100%;">
-    <div class="col-sm-8 col-sm-offset-2">
-		<h2>albumPage</h2>
-    </div><!-- col-sm-8 -->
-</div><!-- container -->
+<uib-tabset>
+  <uib-tab heading="相册">
+    <div class="row manageBar" style="margin:0;" ng-if="setting.isManageMode">
+      <div class="col-sm-12 manage-mode">
+        <div class="row">
+          <div class="col-sm-2">
+            <input type="checkbox" ng-class="{'check-all-select':tag.all,'check-all-unselect':!tag.all}" ng-model="tag.all" ng-click="selectAll()">
+          </div>
+          <div class="col-sm-1" style="margin-top:13px;margin-left:-104px;cursor:pointer;">
+            <span ng-click="selectAs()">本页全选</span>
+          </div>
+          <div class="col-sm-1" style="margin-top:9px;">
+            <button class="btn btn-info btn-sm" ng-if="paramTags.length > 0" ng-click="deleteAll()">删除</button>
+          </div>
+          <div class="col-sm-1 col-sm-offset-6" style="margin-top:8px;">
+            <button class="btn btn-info btn-md" style="background-color: transparent;border-color: transparent;" ng-click="finishManage()">完成管理</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container album">
+      <div class="row" ng-if="!setting.isManageMode">
+        <div class="col-sm-6">
+          <button class="btn btn-info btn-sm" style="margin-top:5px;" ng-click="changeMode()">管理模式</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 top-distance" ng-repeat="item in albumArray">
+          <cust-img album-array="albumArray" is-manage-mode="setting.isManageMode" param-tags="paramTags" tag-all="tag.all" url="item.url"
+          description="item.description" vm="item.vm" id="item.id">
+          </cust-img>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="上传" style="margin-left:-3px;">
+    <div class="row upload-part">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-3" style="margin-left: 41px;" ng-repeat="p in vm.albums track by $index">
+            <div class="photo-part">
+                <div class="photo-part-content">
+                  <img class="img-prev" alt="174 X 214" ng-src="{{p.photo}}" />
+                </div>
+                <div style="margin-left: 8px;">
+                  <label>添加描述:</label>
+                  <input type="text" ng-model="p.des" class="form-control" style="display:inline-block;width:74%;height:27px;">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-if="setting.isFinish=='false'">
+          <div class="col-sm-6" style="margin-left:63px;">
+            <div wm-multi-file-upload ng-model="vm.albums" is-finish="setting.isFinish">
+                <button class="btn btn-success upload-btn">
+                  <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>上传
+                </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" style="margin-left: 61px;">
+            <button class="btn btn-success modal-upload-btn" ng-click="cancelUpload()" ng-if="setting.isFinish=='true'">
+            <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>取消
+            </button>
+            <button class="btn btn-success modal-upload-btn" ng-click="confirmUpload()" ng-if="setting.isFinish=='true'">
+              <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>确定
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>

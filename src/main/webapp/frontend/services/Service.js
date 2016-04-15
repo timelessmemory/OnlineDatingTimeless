@@ -1,1 +1,1 @@
-define(['services/interceptor', 'services/dateService'], function() {})
+define(['services/interceptor', 'services/dateService', 'services/notificationService', 'services/uploadService'], function() {})

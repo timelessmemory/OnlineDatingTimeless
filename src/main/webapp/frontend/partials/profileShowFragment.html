@@ -1,0 +1,108 @@
+<!--show view-->
+<div class="row body">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12 title-main">
+        个人资料
+      </div>
+    </div>
+    <div class="row small-title">
+      <div class="col-sm-12">
+        <h3>内心独白</h3>
+        <p>{{profile.introduction ? profile.introduction : '未填'}}</p>
+      </div>
+    </div>
+
+    <div class="row small-title">
+      <div class="col-sm-12">
+        <h3>详细资料</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <ol>
+              <li ng-if="!isVisit">真实姓名：
+                <span class="black">{{profile.realName ? profile.realName : '未填'}}</span>
+              </li>
+              <li>性别<span ng-if="!isVisit">(不可修改)</span>：
+                <span class="black">{{profile.gender}}</span>
+              </li>
+              <li>年龄<span ng-if="!isVisit">(不可修改)</span>：
+                <span class="black">{{profile.age}}岁</span>
+              </li>
+              <li>居住地：
+                <span class="black">
+                  {{profile.country ? profile.country : '未填'}}
+                  {{profile.province ? profile.province : '未填'}}{{profile.city ? profile.city : ''}}
+                </span>
+              </li>
+              <li>体 重：
+                <span class="black">{{profile.weight ? profile.weight : '未填'}}
+                <span ng-if="profile.weight">斤</span></span>
+              </li>
+              <li>学 历：<span class="black">{{profile.education ? profile.education : '未填'}}</span></li>
+              <li ng-switch="profile.salary">月 薪：
+                <span ng-switch-when="500" class="black">0~1000元</span>
+                <span ng-switch-when="2000" class="black">1000~3000元</span>
+                <span ng-switch-when="4000" class="black">3000~5000元</span>
+                <span ng-switch-when="6500" class="black">5000~8000元</span>
+                <span ng-switch-when="9000" class="black">8000~10000元</span>
+                <span ng-switch-when="12500" class="black">10000~15000元</span>
+                <span ng-switch-when="17500" class="black">15000~20000元</span>
+                <span ng-switch-when="20000" class="black">20000元以上</span>
+                <span ng-switch-default class="black">未选</span>
+              </li>
+              <li>是否想要小孩：<span class="black">{{profile.isNeedChild ? profile.isNeedChild : '未选'}}</span></li>
+              <li>喜欢的异性类型：<span class="black">{{profile.wantType ? profile.wantType : '未填'}}</span></li>
+            </ol>
+          </div>
+          <div col="col-sm-6">
+            <ol>
+              <li>婚姻：<span class="black">{{profile.marriage ? profile.marriage : '未选'}}</span></li>
+              <li>身高：
+                <span class="black">{{profile.stature ? profile.stature : '未选'}}
+                <span ng-if="profile.stature">cm</span></span>
+            </li>
+              <li>职业：<span class="black">{{profile.job ? profile.job : '未填'}}</span></li>
+              <li>住房：<span class="black">{{profile.house ? profile.house : '未选'}}</span></li>
+              <li>能否接受异地恋：<span class="black">{{profile.isAcceptDf ? profile.isAcceptDf : '未选'}}</span></li>
+              <li>是否愿意与父母同住：<span class="black">{{profile.isWillingTl ? profile.isWillingTl : '未选'}}</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row small-title" style="margin-bottom:36px;">
+      <div class="col-sm-12">
+        <h3>征友条件</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <ol>
+              <li>所在地区：<span class="black">{{profile.wantAddress ? profile.wantAddress : '未选'}}</span></li>
+              <li>身高：
+                <span class="black">{{profile.wantStature ? profile.wantStature : '未选'}}
+                <span ng-if="profile.wantStature">cm</span></span>
+              </li>
+              <li ng-switch="profile.wantSalary">收入：
+                <span ng-switch-when="500" class="black">0~1000元</span>
+                <span ng-switch-when="2000" class="black">1000~3000元</span>
+                <span ng-switch-when="4000" class="black">3000~5000元</span>
+                <span ng-switch-when="6500" class="black">5000~8000元</span>
+                <span ng-switch-when="9000" class="black">8000~10000元</span>
+                <span ng-switch-when="12500" class="black">10000~15000元</span>
+                <span ng-switch-when="17500" class="black">15000~20000元</span>
+                <span ng-switch-when="20000" class="black">20000元以上</span>
+                <span ng-switch-default class="black">未选</span>
+              </li>
+            </ol>
+          </div>
+          <div class="col-sm-6">
+            <ol>
+              <li>年龄：<span class="black">{{profile.wantAge ? profile.wantAge : '未选'}}</span></li>
+              <li>学历：<span class="black"> {{profile.wantEducation ? profile.wantEducation : '未选'}}</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

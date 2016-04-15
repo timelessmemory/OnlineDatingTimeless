@@ -94,7 +94,7 @@ define(['app'], function(app) {
 
           $scope.fs = [];
           $scope.ts = [];
-          for (var i = 150; i <= 200; i++) {
+          for (var i = 120; i <= 200; i++) {
             $scope.fs.push(i);
             $scope.ts.push(i);
           }

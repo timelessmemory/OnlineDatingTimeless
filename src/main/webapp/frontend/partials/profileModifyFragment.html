@@ -1,0 +1,24 @@
+<!--modify view-->
+<div class="row modify-body">
+  <div class="col-sm-12">
+    <div class="form-container">
+        <div class="page-header text-center">
+              <h2 style="margin-left:-21px;">完善资料</h2>
+              <div class="status-buttons text-center">
+                  <a ui-sref-active="active" ui-sref="profilePage.modifyProfile.selfState">
+                      <span>1</span> 内心独白
+                  </a>
+                  <a ui-sref-active="active" ui-sref="profilePage.modifyProfile.detailProfile">
+                      <span>2</span> 详细资料
+                  </a>
+                  <a ui-sref-active="active" ui-sref="profilePage.modifyProfile.wantHalf">
+                      <span>3</span> 征友条件
+                  </a>
+              </div>
+        </div>
+        <form name="profileForm" ng-submit="submitForm()" novalidate>
+          <div class="form-views" ui-view></div>
+        <form>
+    </div>
+  </div>
+</div>

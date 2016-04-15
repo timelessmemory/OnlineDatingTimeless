@@ -1,5 +1,67 @@
-<div class="container" style="height:100%;">
-    <div class="col-sm-8 col-sm-offset-2">
-		<h2>settingPage</h2>
-    </div><!-- col-sm-8 -->
-</div><!-- container -->
+<div class="container settingMode">
+  <uib-tabset vertical="true">
+    <uib-tab heading="隐私设置">
+      <div class="row">
+        <div class="col-sm-12">
+            <cust-breadcrumb options="{{crumbPrivate}}"></cust-breadcrumb>
+        </div>
+      </div>
+      <div class="row" style="margin-left: 91px;margin-top: 21px;">
+        <div class="col-sm-4" style="padding-top: 6px;">
+            <label>是否向他人展示个人资料</label>
+        </div>
+        <div class="col-sm-4" style="margin-left: -92px;">
+            <div cust-switch ng-model="status" 
+                switch-function="send(newValue)" is-disabled="false">
+            </div>
+        </div>
+      </div>
+    </uib-tab>
+    <uib-tab heading="修改密码">
+      <div class="row">
+        <div class="col-sm-12">
+            <cust-breadcrumb options="{{crumbPassword}}"></cust-breadcrumb>
+        </div>
+      </div>
+      <div class="row" style="margin-left: 176px;margin-top: 70px;">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <form name="passwordForm" ng-submit="submitForm()" novalidate>
+                <div class="form-group" ng-class="{'has-error':passwordForm.originPassord.$invalid && !passwordForm.originPassord.$pristine}">
+                    <label>原密码</label>
+                    <input type="password" uib-tooltip="原密码" tooltip-placement="top" name="originPassord" class="form-control" ng-model="user.originPassord" placeholder="原密码" required />
+                    <p ng-show="passwordForm.originPassord.$error.required && !passwordForm.originPassord.$pristine" 
+                        class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign">
+                        </label>原密码是必须的.
+                    </p>
+                </div>
+                <div class="form-group" ng-class="{'has-error':passwordForm.newPassord.$invalid && !passwordForm.newPassord.$pristine}">
+                    <label>新密码</label>
+                    <input type="password" uib-tooltip="新密码" tooltip-placement="top" name="newPassord" class="form-control" ng-model="user.newPassord" placeholder="新密码" required />
+                    <p ng-show="passwordForm.newPassord.$error.required && !passwordForm.newPassord.$pristine" 
+                        class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign">
+                        </label>新密码是必须的.
+                    </p>
+                </div>
+                <div class="form-group" ng-class="{'has-error':passwordForm.retypePassord.$invalid && !passwordForm.retypePassord.$pristine}">
+                    <label>确认密码</label>
+                    <input type="password" uib-tooltip="确认密码" tooltip-placement="top" name="retypePassord" class="form-control" ng-model="user.retypePassord" placeholder="确认密码" required />
+                    <p ng-show="passwordForm.retypePassord.$error.required && !passwordForm.retypePassord.$pristine" 
+                        class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign">
+                        </label>确认密码是必须的.
+                    </p>
+                </div>
+                <button style="margin-bottom:30px;margin-top:30px;" class="btn btn-primary btn-info btn-block" ng-disabled="passwordForm.$invalid">确定
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+</div>
