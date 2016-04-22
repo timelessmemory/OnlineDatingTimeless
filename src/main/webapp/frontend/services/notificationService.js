@@ -21,7 +21,7 @@ define(['app'], function(app) {
                 var _self = this;
                 $timeout(function() {
                     _self.clear();
-                }, 5000);
+                }, 3000);
             },
             clear : function() {
                 this.content = '';

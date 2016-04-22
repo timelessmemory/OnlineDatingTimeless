@@ -149,14 +149,14 @@ body {
   text-align: center;
 }
 .msg.ng-enter {
-    transition: 2s linear all;
+    transition: 1s linear all;
     opacity: 0.3;
 }
 .msg.ng-enter-active {
     opacity: 1;
 }
 .msg.ng-leave {
-    transition: 2s linear all;
+    transition: 1s linear all;
     opacity: 1;
 }
 .msg.ng-leave-active {

@@ -29,9 +29,10 @@
                 </p>
             </div>
 
-            <div class="form-group" ng-class="{'has-error':registerForm.nickname.$invalid && !registerForm.nickname.$pristine}">
+            <div class="form-group" ng-class="{'has-error':registerForm.nickname.$invalid && !registerForm.nickname.$pristine || hasNickname}">
                 <label>昵称</label>
-                <input uib-tooltip="昵称" tooltip-placement="top" type="text" name="nickname" class="form-control" ng-model="user.nickname" ng-minlength="2" ng-maxlength="20" placeholder="昵称" required />
+                <input uib-tooltip="昵称" tooltip-placement="top" type="text" name="nickname" class="form-control" ng-model="user.nickname" 
+                ng-blur="checkNickname()" ng-minlength="2" ng-maxlength="20" placeholder="昵称" required />
                 <p ng-show="registerForm.nickname.$error.required && !registerForm.nickname.$pristine" 
                     class="help-block">
                     <label class="glyphicon glyphicon-exclamation-sign"></label>昵称是必须的.
@@ -42,11 +43,15 @@
                 <p ng-show="registerForm.nickname.$error.maxlength" class="help-block">
                     <label class="glyphicon glyphicon-exclamation-sign"></label>昵称最长20位.
                 </p>
+                <p ng-show="hasNickname" class="help-block">
+                    <label class="glyphicon glyphicon-exclamation-sign"></label>昵称已存在.
+                </p>
             </div>
 
-            <div class="form-group" ng-class="{'has-error':registerForm.mobile.$invalid && !registerForm.mobile.$pristine}">
+            <div class="form-group" ng-class="{'has-error':registerForm.mobile.$invalid && !registerForm.mobile.$pristine || hasMobile}">
                 <label>手机号</label>
-                <input type="text" uib-tooltip="手机号" tooltip-placement="top" mobile-format name="mobile" class="form-control" ng-model="user.mobile"
+                <input type="text" uib-tooltip="手机号" tooltip-placement="top" mobile-format name="mobile" class="form-control"
+                ng-blur="checkMobile()" ng-model="user.mobile"
                 placeholder="手机号" required>
                 <p ng-show="registerForm.mobile.$error.mobile" class="help-block">
                     <label class="glyphicon glyphicon-exclamation-sign"></label>手机号码格式不正确.
@@ -55,12 +60,14 @@
                     class="help-block">
                     <label class="glyphicon glyphicon-exclamation-sign"></label>手机号是必须的.
                 </p>
+                 <p ng-show="hasMobile" class="help-block">
+                    <label class="glyphicon glyphicon-exclamation-sign"></label>手机号已注册.
+                </p>
             </div>
                  
             <div class="form-group" ng-class="{'has-error':registerForm.password.$invalid && !registerForm.password.$pristine }">
                 <label>密码</label>
-                <input id="password" uib-tooltip="密码" tooltip-placement="top" type="password" name="password" class="form-control" ng-model="user.password" required password-format ng-minlength="6" ng-maxlength="30" 
-                placeholder="密码" />
+                <input id="password" uib-tooltip="密码" tooltip-placement="top" type="password" name="password" class="form-control" ng-model="user.password" required password-format ng-minlength="6" ng-maxlength="30" placeholder="密码" />
                 <p ng-show="registerForm.password.$error.required && !registerForm.password.$pristine" class="help-block">
                     <label class="glyphicon glyphicon-exclamation-sign"></label>密码是必须的.
                 </p>
@@ -93,7 +100,7 @@
                 </label>
             </p>
                  
-            <button style="margin-bottom:30px;margin-top:-10px;" class="btn btn-primary btn-info btn-block" ng-disabled="registerForm.$invalid || isShowError || !isAgree">免费注册</button>
+            <button style="margin-bottom:30px;margin-top:-10px;" class="btn btn-primary btn-info btn-block" ng-disabled="registerForm.$invalid || isShowError || !isAgree || hasNickname || hasMobile">免费注册</button>
         </form>
     </div><!-- col-sm-8 -->
 </div><!-- container -->

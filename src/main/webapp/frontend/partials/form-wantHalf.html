@@ -1,41 +1,17 @@
 <div class="row small-title">
   <div class="col-sm-12">
     <h3>征友条件</h3>
-    <div class="row">
+    <div class="row" style="margin-top: 57px;">
       <div class="col-sm-6 col-sm-offset-3">
         <ol>
           <li class="top-distance">身高：
             <input type="text" class="form-control" name="wantStature" ng-model="profile.wantStature" uib-tooltip="身高" tooltip-placement="top" stature-format />
-            <span ng-if="profile.stature">cm</span></span>
+            <span>cm</span>
             <span ng-if="profileForm.wantStature.$error.stature" class="help-tip">
               身高必须是120~200的数字.
             </span>
           </li>
-          <li>
-            <span class="key top-distance">所在地区：<span>
-            <select class="btn btn-info btn-sm" ng-change="changeWantCountry()" ng-options="C.name for C in countryList" ng-model="cpw.country">
-              <option value="">国家</option>
-            </select>
-            <select class="btn btn-info btn-sm" ng-change="changeWantProvince()" ng-options="p.name for p in cpw.country.province" ng-model="cpw.province">
-              <option value="">省份/直轄市</option>
-            </select>
-            <select class="btn btn-info btn-sm" ng-change="changeWantCity()" ng-model="profile.wantCity" ng-options="c for c in cpw.province.city">
-              <option value="">市</option>
-            </select> 
-          </li>
 
-          <li style="margin-top:26px;">年龄：
-            <select class="btn btn-info btn-sm" ng-model="profile.wantAgeFrom" ng-options="f for f in fbs">
-              <option value="">未选</option>
-              <option value="不限">不限</option>
-            </select>
-            ~
-            <select class="btn btn-info btn-sm" ng-model="profile.wantAgeTo" ng-options="f for f in fbs">
-              <option value="">未选</option>
-              <option value="不限">不限</option>
-            </select>
-          </li>
-          
           <li class="top-distance">收入：
             <select class="btn btn-info btn-sm" ng-model="profile.wantSalary">
               <option value="">未选</option>
@@ -64,16 +40,42 @@
               <option value="不限">不限</option>
             </select>
           </li>
+
+          <li class="top-distance">年龄：
+            <select class="btn btn-info btn-sm" ng-model="profile.wantAgeFrom" ng-options="f for f in fbs">
+              <option value="">未选</option>
+              <option value="不限">不限</option>
+            </select>
+            ~
+            <select class="btn btn-info btn-sm" ng-model="profile.wantAgeTo" ng-options="f for f in fbs">
+              <option value="">未选</option>
+              <option value="不限">不限</option>
+            </select>
+          </li>
+
+          <li style="margin-left: -26px;">
+            <span class="key top-distance">所在地区：<span>
+            <select class="btn btn-info btn-sm" ng-change="changeWantCountry()" ng-options="C.name for C in countryList" ng-model="cpw.country">
+              <option value="">国家</option>
+            </select>
+            <select class="btn btn-info btn-sm" ng-change="changeWantProvince()" ng-options="p.name for p in cpw.country.province" ng-model="cpw.province">
+              <option value="">省份/直轄市</option>
+            </select>
+            <select class="btn btn-info btn-sm" ng-change="changeWantCity()" ng-model="profile.wantCity" ng-options="c for c in cpw.province.city">
+              <option value="">市</option>
+            </select> 
+          </li>
         </ol>
       </div>
     </div>
-    <div class="row" style="margin: 25px 0px 100px -8px">
+    <div class="row" style="margin: 41px 0px 100px -8px">
       <div class="col-sm-6 col-sm-offset-4">
-        <button class="btn btn-primary" style="width: 108px;" ng-click="cancel()">
+        <!--默认是类型是submit-->
+        <button type="button" class="btn btn-default" style="width: 108px;" ng-click="cancel()">
           取消
         </button>
-        <button class="btn btn-success" style="width: 108px;" ng-disabled="profileForm.$invalid"
-        style="margin-left:20px;">
+        <button class="btn btn-info" style="width: 108px;margin-left:79px;" ng-disabled="profileForm.$invalid"
+        >
           确认
         </button>
       </div>

@@ -16,17 +16,17 @@
                 <label class="glyphicon glyphicon-asterisk"></label>设置
             </a>
         </li>
-        <li>
+        <li ng-if="isLogin == 'false' || isLogin == null">
             <div class="btn btn-info" ng-click="goLogin()">
                 <label class="glyphicon glyphicon-log-in"></label>登录
             </div>
         </li>
-        <li>
+        <li ng-if="isLogin == 'false' || isLogin == null">
             <div class="btn btn-info" ng-click="goRegister()">
                 <label class="glyphicon glyphicon-send"></label>注册
             </div>
         </li>
-        <li ng-if="isLogin">
+        <li ng-if="isLogin == 'true'">
             <button class="btn btn-info" ng-click="goLogout()">
                 <label class="glyphicon glyphicon-off"></label>注销
             </button>

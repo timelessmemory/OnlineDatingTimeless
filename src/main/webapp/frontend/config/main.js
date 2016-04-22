@@ -9,6 +9,7 @@ require.config({
         'bootstrap-min' : 'libs/bootstrap.min',
         'ui-bootstrap-tpls' : 'libs/ui-bootstrap-tpls-0.14.3',
         'angular-file-upload' : 'libs/angular-file-upload.min',
+        'md5' : 'libs/md5.min',
 
         //自定义js文件
         'bootstrap': "bootstrap",
@@ -16,7 +17,8 @@ require.config({
         'router' : "config/router",
         'Controller' : 'controllers/Controller',
         'Directive' : 'directives/Directive',
-        'Service' : 'services/Service'
+        'Service' : 'services/Service',
+        'config' : 'config/config'
     },
     shim : {
         'angular' : {
@@ -38,7 +40,7 @@ require.config({
         },
         'angular-file-upload' : {
             deps : ['angular'],
-        }
+        },
     },
     deps : ['bootstrap'],
     urlArgs : "bust=" + (new Date()).getTime()  //防止读取缓存，调试用

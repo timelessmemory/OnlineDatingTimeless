@@ -1,0 +1,4 @@
+window.sessionStorage在标签页关闭后数据就清空。
+而cookie在关闭浏览器后数据清空。
+accestoken过期时间间隔为20min，但是每次请求都会重新激活20min.
+也就是，若20min未请求则过期，一直请求则不过期。

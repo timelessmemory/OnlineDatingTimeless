@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                     name : 'config/main',    //主文件名字
                     optimize : 'uglify',   //指定压缩工具类型  使用uglify工具压缩
                     mainConfigFile : 'frontend/config/main.js',  //require 的主文件
-                    out : 'build/all.js'       //压缩后的文件
+                    out : 'build/all.min.js'       //压缩后的文件
                     //其他无需指定  本插件会自动寻找requirejs引进的所有文件
                 }
             }
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         cssmin : {
             buildCss : {
                 src : 'dist/index.css',
-                dest : 'dist/index.min.css'
+                dest : 'frontend/styles/index.min.css'
             }
         },
         watch : {

@@ -1,6 +1,11 @@
 define(['app'], function(app) {
-	app.controller('navigationBarCtrl', ['$rootScope', '$state', '$scope', function($rootScope, $state, $scope) {
-      $rootScope.isLogin = false;
+	app.controller('navigationBarCtrl', ['$rootScope', '$state', '$scope', 'cookieService', function($rootScope, $state, $scope, cookieService) {
+      
+      if (window.sessionStorage) {
+        $rootScope.isLogin = window.sessionStorage.getItem('isLogin');
+      } else {
+        alert("浏览暂不支持sessionStorage");
+      }
 
       $scope.goLogin = function()　{
         $state.go('loginPage');
@@ -14,7 +19,10 @@ define(['app'], function(app) {
         $rootScope.modalTitle = '注销';
         $rootScope.modalBody = '确定登出吗';
         $rootScope.confirm = function()　{
+          cookieService.delCookie('accessToken');
+          window.sessionStorage.clear();
           $('#modal').modal('hide');
+          $state.go('loginPage');
         }
         $('#modal').modal('show');
       }
@@ -22,15 +30,6 @@ define(['app'], function(app) {
       $scope.goHomePage = function() {
         $state.go('homePage');
       }
-
-      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        // if(toState.name=='login')return;// 如果是进入登录界面则允许
-        // // 如果用户不存在
-        // if(!$rootScope.user || !$rootScope.user.token){
-        //   event.preventDefault();// 取消默认跳转行为
-        //   $state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
-        // }
-      });
 
        //navigationbar
       $("#menubar li a").wrapInner('<span class="out"></span>');

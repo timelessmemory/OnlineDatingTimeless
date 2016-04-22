@@ -7,6 +7,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="favicon.ico" />
     	<link rel="stylesheet" href="frontend/libs/bootstrap.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="frontend/styles/index.min.css"> -->
         <link rel="stylesheet" type="text/css" href="frontend/styles/global.css">
         <link rel="stylesheet" type="text/css" href="frontend/styles/navigationBar.css">
         <link rel="stylesheet" type="text/css" href="frontend/styles/registerPage.css">
@@ -38,8 +39,16 @@
         <!--view-->
         <div ui-view="navigationBarView"></div>
         <div class="page" ui-view="indexView"></div>
+
+        <!--contact me-->
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=842976589&site=qq&menu=yes" style="position:fixed;top: 50%;right:0px;">
+            <img border="0" src="frontend/images/qq.jpeg" alt="联系站长" title="联系站长"/>
+        </a>
     </body>
     <script type="text/javascript" data-main="frontend/config/main" 
         src="frontend/libs/require.js">
     </script>
+    <!--<script type="text/javascript" data-main="build/all.min.js" 
+        src="frontend/libs/require.js">
+    </script>-->
 </html>

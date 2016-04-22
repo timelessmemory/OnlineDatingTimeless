@@ -1,4 +1,4 @@
-define(['app'], function(app) {
+define(['app', 'config'], function(app, config) {
 	  app.factory("uploadService", ['$upload', '$q', '$http', function($upload, $q, $http) {
           var rand = function() {
             return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -76,9 +76,13 @@ define(['app'], function(app) {
 
             //http://developer.qiniu.com/docs/v6/sdk/java-sdk.html
             //参考api实现后台返回token
+            console.log(config.uploadUrl)
             $http({
-              url : 'http://localhost:8080/hello/api',
-              method : 'GET'
+              url : config.uploadUrl,
+              method : 'GET',
+              params : {
+                'accessToken' : window.sessionStorage ? window.sessionStorage.getItem('accessToken') : '',
+              },
             })
             .success(function(data) {
               var token = data.token;

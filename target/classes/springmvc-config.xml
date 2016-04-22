@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+           http://www.springframework.org/schema/data/mongo  
+           http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+           ">
+
+			<mvc:annotation-driven />
+			<context:component-scan base-package="com.ljf"/>
+			
+			<!-- Spring相关的bean配置 -->
+			<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		      <property name="locations">
+		           <list>  
+		              <value>classpath:mongo.properties</value>  
+		         </list>
+		      </property>  
+		   	</bean>
+		   
+    		<mongo:mongo host="${mongo.host.job}" port="${mongo.port.job}"/>
+    		
+    		<mongo:db-factory id="mongoDbFactory" dbname="${mongo.dbname.job}" mongo-ref="mongo"/>
+			
+			<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+				<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+			</bean>
+			
+			<!-- springMvc相关配置 -->
+			<mvc:interceptors>
+				<mvc:interceptor>
+					<mvc:mapping path="/*/*/*"/>
+					<mvc:mapping path="/*/*"/>
+					<mvc:mapping path="/*"/>
+					<mvc:exclude-mapping path="/user/register"/>
+					<mvc:exclude-mapping path="/user/login"/>
+					<mvc:exclude-mapping path="/validateCode/get"/>
+					<mvc:exclude-mapping path="/user/checkNickname"/>
+					<mvc:exclude-mapping path="/user/checkMobile"/>
+					<mvc:exclude-mapping path="/registerClause/*"/>
+					<mvc:exclude-mapping path="/index.html"/>
+					<mvc:exclude-mapping path="/*/*/*.html"/>
+					<mvc:exclude-mapping path="/*/*/*.jpeg"/>
+					<mvc:exclude-mapping path="/*/*/*.png"/>
+					<mvc:exclude-mapping path="/*/*/*.gif"/>
+					<mvc:exclude-mapping path="/*/*/*.jpg"/>
+					<mvc:exclude-mapping path="/favicon.ico"/>
+					<mvc:exclude-mapping path="/*/*/*.css"/>
+					<mvc:exclude-mapping path="/*/*/*.js"/>
+					<mvc:exclude-mapping path="/*/*.js"/>
+					<mvc:exclude-mapping path="/*/*/*.json"/>
+					<mvc:exclude-mapping path="/*/*/*.woff2"/>
+					<mvc:exclude-mapping path="/frontend/libs/jquery.min.map"/>
+					<bean class="com.ljf.interceptor.LoginInterceptor"></bean>
+				</mvc:interceptor>
+			</mvc:interceptors>
+			
+		  	<!-- 静态资源的访问 -->
+		    <mvc:default-servlet-handler />
+</beans>

@@ -1,5 +1,5 @@
-define(['app'], function(app) {
-	app.controller('loginPageCtrl', ['$scope', function($scope) {
+define(['app', 'md5'], function(app, md5) {
+	app.controller('loginPageCtrl', ['$scope', '$timeout', '$state', 'httpService', 'notificationService', 'cookieService', function($scope, $timeout, $state, httpService, notificationService, cookieService) {
 
 		$scope.user = {
 			mobile : '',
@@ -19,9 +19,7 @@ define(['app'], function(app) {
 
 		function validateCodeCheck(input) {
 			if (input) {
-				console.log(input.toLowerCase())
-				console.log(getCookie('vcode').toLowerCase())
-				if (input.toLowerCase() !== getCookie('vcode').toLowerCase()) {
+				if (input.toLowerCase() !== cookieService.getCookie('vcode').toLowerCase()) {
 					$scope.isShowError = true;
 				} else {
 					$scope.isShowError = false;
@@ -32,19 +30,31 @@ define(['app'], function(app) {
 		}
 
 		$scope.submitForm = function() {
-			console.log($scope.user)
-		}
+			$scope.user.password = md5($scope.user.password);
+			httpService.postSimple('user/login', $scope.user)
+			.success(function(data) {
+				if (data.statusCode == 200) {
 
-		function getCookie(name) 
-		{ 
-		    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-		
-		    if (arr = document.cookie.match(reg)) {
-		        return unescape(arr[2]);
-		    } else {
-		        return null;
-		    }
-		}
+					if (window.sessionStorage) {
+						window.sessionStorage.setItem('accessToken', data.explanation);
+						window.sessionStorage.setItem('isLogin', true);
+			        } else {
+			        	alert("浏览暂不支持sessionStorage");
+			        }
 
+			        window.sessionStorage.setItem('id', data.extraMessage);
+					
+					notificationService.success('登录成功, 即将进入主页..');
+					$timeout(function() {
+						$state.go('profilePage.showProfile');
+					}, 3000);
+				} else {
+					notificationService.info("用户名或者密码不正确")
+					$scope.refresh();
+				}
+			})
+			.error(function() {
+			})
+		}
 	}])
 })

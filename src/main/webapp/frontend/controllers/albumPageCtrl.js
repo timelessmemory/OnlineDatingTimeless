@@ -56,7 +56,8 @@ define(['app'], function(app) {
               $scope.albumArray[i].vm.isEdit = false;
             }
           }
-          
+          $scope.paramTags = [];
+          $scope.tag.all = false;
           $scope.setting.isManageMode = false;
         }
 
