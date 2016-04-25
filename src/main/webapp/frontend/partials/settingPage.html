@@ -27,7 +27,7 @@
         <div class="col-sm-12">
           <div class="row">
             <div class="col-sm-6">
-              <form name="passwordForm" ng-submit="submitForm()" novalidate>
+              <form name="passwordForm" ng-submit="submitPasswordForm()" novalidate>
                 <div class="form-group" ng-class="{'has-error':passwordForm.originPassord.$invalid && !passwordForm.originPassord.$pristine}">
                     <label>原密码</label>
                     <input type="password" uib-tooltip="原密码" tooltip-placement="top" name="originPassord" class="form-control" ng-model="user.originPassord" placeholder="原密码" required />
@@ -39,23 +39,66 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error':passwordForm.newPassord.$invalid && !passwordForm.newPassord.$pristine}">
                     <label>新密码</label>
-                    <input type="password" uib-tooltip="新密码" tooltip-placement="top" name="newPassord" class="form-control" ng-model="user.newPassord" placeholder="新密码" required />
+                    <input id="password" type="password" uib-tooltip="新密码" tooltip-placement="top" name="newPassord" class="form-control" ng-model="user.newPassord" placeholder="新密码" password-format ng-minlength="6" ng-maxlength="30" required />
                     <p ng-show="passwordForm.newPassord.$error.required && !passwordForm.newPassord.$pristine" 
                         class="help-block">
                         <label class="glyphicon glyphicon-exclamation-sign">
                         </label>新密码是必须的.
                     </p>
+                    <p ng-show="passwordForm.newPassord.$error.password" class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign"></label>要求同时包含数字和英文且不包含特殊字符.
+                    </p>
+
+                    <p ng-show="passwordForm.newPassord.$error.minlength" class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign"></label>密码长度不得少于6位.
+                    </p>
+                    <p ng-show="passwordForm.newPassord.$error.maxlength" class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign"></label>密码长度不得超过30位.
+                    </p>
                 </div>
-                <div class="form-group" ng-class="{'has-error':passwordForm.retypePassord.$invalid && !passwordForm.retypePassord.$pristine}">
+                <div class="form-group" ng-class="{'has-error':passwordForm.retypePassword.$invalid && !passwordForm.retypePassword.$pristine}">
                     <label>确认密码</label>
-                    <input type="password" uib-tooltip="确认密码" tooltip-placement="top" name="retypePassord" class="form-control" ng-model="user.retypePassord" placeholder="确认密码" required />
-                    <p ng-show="passwordForm.retypePassord.$error.required && !passwordForm.retypePassord.$pristine" 
+                    <input type="password" uib-tooltip="确认密码" tooltip-placement="top" name="retypePassword" class="form-control" ng-model="user.retypePassword" placeholder="确认密码" equal-to="password" required />
+                    <p ng-show="passwordForm.retypePassword.$error.required && !passwordForm.retypePassword.$pristine" 
                         class="help-block">
                         <label class="glyphicon glyphicon-exclamation-sign">
                         </label>确认密码是必须的.
                     </p>
+                    <p ng-show="passwordForm.retypePassword.$error.equal" class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign"></label>两次密码输入不一致.
+                    </p>
                 </div>
-                <button style="margin-bottom:30px;margin-top:30px;" class="btn btn-primary btn-info btn-block" ng-disabled="passwordForm.$invalid">确定
+                <button style="margin-bottom:30px;margin-top:30px;" class="btn btn-primary btn-info btn-block" ng-disabled="passwordForm.$invalid">修改
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </uib-tab>
+    <uib-tab heading="更改手机号">
+      <div class="row">
+        <div class="col-sm-12">
+            <cust-breadcrumb options="{{crumbMobile}}"></cust-breadcrumb>
+        </div>
+      </div>
+      <div class="row" style="margin-left: 176px;margin-top: 70px;">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <form name="mobileForm" ng-submit="submitMobileForm()" novalidate>
+                <div class="form-group" ng-class="{'has-error':mobileForm.mobile.$invalid && !mobileForm.mobile.$pristine}">
+                    <label>手机号</label>
+                    <input type="text" uib-tooltip="手机号" tooltip-placement="top" name="mobile" class="form-control" ng-model="ms.mobile" placeholder="手机号" required mobile-format />
+                    <p ng-show="mobileForm.mobile.$error.required && !mobileForm.mobile.$pristine" 
+                    class="help-block">
+                    <label class="glyphicon glyphicon-exclamation-sign"></label>手机号是必须的.
+                    </p>
+                     <p ng-show="mobileForm.mobile.$error.mobile" class="help-block">
+                        <label class="glyphicon glyphicon-exclamation-sign"></label>手机号码格式不正确.
+                    </p>
+                </div>
+                <button style="margin-bottom:30px;margin-top:30px;" class="btn btn-primary btn-info btn-block" ng-disabled="mobileForm.$invalid">确定
                 </button>
               </form>
             </div>

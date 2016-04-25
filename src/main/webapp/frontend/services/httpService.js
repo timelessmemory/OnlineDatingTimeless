@@ -5,7 +5,10 @@ define(['app'], function(app) {
           return $http({
             method : 'POST',
             url : url,
-            data : data
+            data : data,
+            params : {
+              'accessToken' : window.sessionStorage ? window.sessionStorage.getItem('accessToken') : '',
+            }
           })
         },
         delete : function(url) {

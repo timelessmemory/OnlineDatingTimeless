@@ -16,6 +16,9 @@ public class Constants {
 	public static final int SUCCESS_CODE = 200;
 	public static final String SUCCESS = "success";
 	
+	public static final int FAILURE_CODE = 400;
+	public static final String FAILURE = "failure";
+	
 	public static final int UNKNOWN_ERROR_CODE = 500;
 	public static final String UNKNOWN_ERROR = "Î´Öª´íÎó";
 	

@@ -1,16 +1,18 @@
 define(['app'], function(app) {
-	app.controller('homePageCtrl', ['$scope', '$http', function($scope, $http) {
-		  $scope.formData = {
+	app.controller('homePageCtrl', ['$scope', '$http', '$state', 'httpService', 'notificationService', function($scope, $http, $state, httpService, notificationService) {
+		      $scope.formData = {
             'birthFrom' : '',
             'birthTo' : '',
             'country' : '',
             'province' : '',
             'city' : '',
-            'gender' : 'woman',
+            'gender' : '男',
             'fromStature' : '',
             'toStature' : '',
             'education' : '',
-            'salaryRange' : ''
+            'salaryRange' : '',
+            'pageSize' : 18,
+            'id' : window.sessionStorage.getItem('id') ? window.sessionStorage.getItem('id') : ''
           }
 
           $scope.myInterval = 5000;
@@ -42,12 +44,9 @@ define(['app'], function(app) {
             }
           ];
 
-          $scope.select = function() {
-            console.log('select')
-          };
-
           $scope.submitForm = function() {
-            console.log($scope.formData)
+            $scope.bigCurrentPage = 1;
+            getUserList(1);
           }
 
           $http.get("frontend/config/location.json").success(function(data) {
@@ -60,11 +59,14 @@ define(['app'], function(app) {
           }
 
           $scope.changeCountry = function() {
+            $scope.formData.country = $scope.cp.country ? $scope.cp.country.name : '';
             $scope.formData.province = '';
             $scope.formData.city = '';
           }
 
           $scope.changeProvince = function () {
+            $scope.formData.country = $scope.cp.country.name;
+            $scope.formData.province = $scope.cp.province ? $scope.cp.province.name : '';
             $scope.formData.city = '';
           }
 
@@ -75,6 +77,7 @@ define(['app'], function(app) {
 
           $scope.fbs = [];
           $scope.tbs = [];
+
           for (var i = 18; i <= 80; i++) {
             $scope.fbs.push(i);
             $scope.tbs.push(i);
@@ -94,6 +97,7 @@ define(['app'], function(app) {
 
           $scope.fs = [];
           $scope.ts = [];
+
           for (var i = 120; i <= 200; i++) {
             $scope.fs.push(i);
             $scope.ts.push(i);
@@ -111,207 +115,72 @@ define(['app'], function(app) {
             }
           })
 
-          $scope.isVIP = false;
-
-          $scope.members = [
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '博士及以上',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            },
-            {
-              profile : {
-                photo : 'frontend/images/photo.jpg',
-                nickname : 'timeless',
-                age : 20,
-                province : '江苏',
-                city : '常州',
-                education : '本科',
-                salary : 6500
-              }
-            }
-          ];
+          if (window.sessionStorage.getItem('id')) {
+              httpService.getWithParam('user/getVipProp', {
+                  id : window.sessionStorage.getItem('id')
+              })
+              .success(function(data) {
+                if (data.vip) {
+                  $scope.isVIP = data.vip;
+                } else {
+                  $scope.isVIP = false;
+                }
+              })
+              .error(function() {
+                  $scope.isVIP = false;
+              })
+          } else {
+              $scope.isVIP = false;
+          }
 
           $scope.maxSize = 4;
-          $scope.bigTotalItems = 175;
-          $scope.bigCurrentPage = 1;
+
+          var curpage = window.sessionStorage.getItem("currentPage");
+          $scope.bigCurrentPage = curpage ? curpage : 1;
+          
+          var getUserList = function(currentPage) {
+              httpService.post('user/queryMemberCount', $scope.formData)
+              .success(function(data) {
+                  if (data.statusCode == 200) {
+                      // console.log(data.explanation)
+                      $scope.bigTotalItems = parseInt(data.explanation);
+
+                      $scope.formData.currentPage = currentPage;
+
+                      httpService.post('user/queryMember', $scope.formData)
+                      .success(function(data) {
+                          // console.log(data)
+                          if (data.statusCode == undefined) {
+                            $scope.members = []
+                            for (var i = 0; i < data.length; i++) {
+                              var item = {
+                                'profile' : data[i]
+                              };
+                              $scope.members.push(item);
+                            }
+                          }
+                      })
+                      .error(function() {
+                        notificationService.danger('发生未知错误')
+                        $scope.members = []
+                      })
+                  }
+              })
+              .error(function() {
+                  notificationService.danger('发生未知错误')
+                  $scope.members = []
+              })
+          }
+
           $scope.$watch('bigCurrentPage', function(newValue) {
-            console.log(newValue)
+             //prevent http delay and reset currentPage
+             $scope.bigTotalItems = 1000000;
+             getUserList(newValue);
+             window.sessionStorage.setItem("currentPage", newValue);
           })
 
           $(document).bind('keyup', function(e) {
-            if (e.keyCode === 13 && $scope.search.nickname) {
+            if (e.keyCode === 13 && $scope.search.nickname && $scope.isVIP) {
               $scope.search();
             }
           });
@@ -320,8 +189,32 @@ define(['app'], function(app) {
             nickname : ''
           }
 
+          $scope.goTo = function(id) {
+            if ($scope.isVIP) {
+              $state.go('profilePage.showMemberProfile', {id : id})
+            } else {
+              notificationService.info('您不是VIP，无法查看他人信息')
+            }
+          }
+
           $scope.search = function() {
-            console.log($scope.search.nickname)
+            httpService.postSimple('user/querySomeone', {
+              nickname : $scope.search.nickname
+            })
+            .success(function(data) {
+                console.log(data)
+                if (data.statusCode == undefined) {
+                  $scope.search.nickname = '';
+                  $scope.bigCurrentPage = 1;
+                  $scope.bigTotalItems = 1;
+                  $scope.members = [];
+                  $scope.members.push({'profile' : data});
+                }
+            })
+            .error(function() {
+              notificationService.danger('发生未知错误')
+              $scope.members = []
+            })
           }
 	}])
 })

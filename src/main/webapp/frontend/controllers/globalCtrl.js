@@ -4,6 +4,12 @@ define(['app'], function(app) {
 		$rootScope.msg = notificationService;
 
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+			// console.log('from ==' + fromState.name)
+			// console.log('toState ==' + toState.name)
+			if (fromState.name != '' && toState.name == 'homePage') {
+				window.sessionStorage.removeItem('currentPage')
+			}
+
         	if (toState.name == 'loginPage' || toState.name == 'homePage' || toState.name == 'registerPage') return;
 
 	        if (window.sessionStorage && window.sessionStorage.getItem('accessToken') == null) {

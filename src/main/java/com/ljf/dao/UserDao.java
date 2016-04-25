@@ -1,5 +1,8 @@
 package com.ljf.dao;
 
+import java.util.List;
+
+import com.ljf.bean.PaginationParam;
 import com.ljf.bean.User;
 
 /**
@@ -21,4 +24,12 @@ public interface UserDao {
 	public User queryOneById(String id);
 	public User queryOneByIdForQuery(String id);
 	public void updateAvatarById(String id, String avatar);
+	public User queryVipPropById(String id);
+	public int queryUserCountByCondition(PaginationParam paginationParam);
+	public List<User> queryUserByCondition(PaginationParam paginationParam);
+	public User queryOneByNickname(String nickname);
+	public User queryIsShowById(String id);
+	public void updateIsShowById(String id, boolean isShow);
+	public User findByIdAndPassword(String id, String originPassword);
+	public void UpdatePassword(String id, String newPassword);
 }

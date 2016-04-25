@@ -1,5 +1,10 @@
 package com.ljf.service;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ljf.bean.PaginationParam;
 import com.ljf.bean.User;
 
 /**
@@ -20,4 +25,12 @@ public interface UserService {
 	public User getUserProfile(String id);
 	public void updateUserProfile(User user);
 	public void updateUserAvatar(String id, String avatar);
+	public User getVipProp(String id);
+	public int queryMemberCount(PaginationParam paginationParam);
+	public List<User> queryMember(PaginationParam paginationParam);
+	public User querySomeonePartProfile(String nickname);
+	public User querySomeoneProfile(String id);
+	public User queryIsShow(String id);
+	public void changeIsShowState(String id, boolean isShow);
+	public boolean changePassword(String id, String originPassord, String newPassord);
 }

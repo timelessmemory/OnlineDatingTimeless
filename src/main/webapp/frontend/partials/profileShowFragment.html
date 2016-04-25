@@ -19,13 +19,13 @@
         <div class="row">
           <div class="col-sm-6">
             <ol>
-              <li ng-if="!isVisit">真实姓名：
+              <li ng-if="!setting.isVisit">真实姓名：
                 <span class="black">{{profile.realName ? profile.realName : '未填'}}</span>
               </li>
-              <li>性别<span ng-if="!isVisit">(不可修改)</span>：
+              <li>性别<span ng-if="!setting.isVisit">(不可修改)</span>：
                 <span class="black">{{profile.gender}}</span>
               </li>
-              <li>年龄<span ng-if="!isVisit">(不可修改)</span>：
+              <li>年龄<span ng-if="!setting.isVisit">(不可修改)</span>：
                 <span class="black">{{profile.age}}岁</span>
               </li>
               <li>居住地：
@@ -77,7 +77,7 @@
         <div class="row">
           <div class="col-sm-6">
             <ol>
-              <li>所在地区：<span class="black">{{profile.wantAddress ? profile.wantAddress : '未选'}}</span></li>
+              <li>所在地区：<span class="black">{{profile.wantCountry ? profile.wantCountry : ''}}{{profile.wantProvince ? profile.wantProvince : ''}}{{profile.wantCity ? profile.wantCity : ''}}</span></li>
               <li>身高：
                 <span class="black">{{profile.wantStature ? profile.wantStature : '未选'}}
                 <span ng-if="profile.wantStature">cm</span></span>
@@ -97,7 +97,7 @@
           </div>
           <div class="col-sm-6">
             <ol>
-              <li>年龄：<span class="black">{{profile.wantAge ? profile.wantAge : '未选'}}</span></li>
+              <li>年龄：<span class="black">{{profile.wantAgeFrom ? profile.wantAgeFrom : '无限制'}} ~ {{profile.wantAgeTo ? profile.wantAgeTo : '无限制'}}</span></li>
               <li>学历：<span class="black"> {{profile.wantEducation ? profile.wantEducation : '未选'}}</span></li>
             </ol>
           </div>

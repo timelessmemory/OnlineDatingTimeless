@@ -45,6 +45,10 @@
 					<mvc:exclude-mapping path="/validateCode/get"/>
 					<mvc:exclude-mapping path="/user/checkNickname"/>
 					<mvc:exclude-mapping path="/user/checkMobile"/>
+					<mvc:exclude-mapping path="/user/getVipProp"/>
+					<mvc:exclude-mapping path="/user/queryMemberCount"/>
+					<mvc:exclude-mapping path="/user/queryMember"/>
+					<mvc:exclude-mapping path="/user/querySomeone"/>
 					<mvc:exclude-mapping path="/registerClause/*"/>
 					<mvc:exclude-mapping path="/index.html"/>
 					<mvc:exclude-mapping path="/*/*/*.html"/>

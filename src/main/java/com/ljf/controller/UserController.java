@@ -1,5 +1,6 @@
 package com.ljf.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ljf.bean.PaginationParam;
 import com.ljf.bean.Response;
 import com.ljf.bean.User;
 import com.ljf.commons.Constants;
@@ -105,4 +107,70 @@ public class UserController {
 		return new Response(Constants.SUCCESS_CODE, Constants.SUCCESS);
     }
 	
+	@ResponseBody
+	@RequestMapping(value = "/getVipProp", method = RequestMethod.GET)
+    public User getVipProp(@RequestParam String id) {
+//		System.out.println(id);
+//		System.out.println(userService.getVipProp(id));
+		return userService.getVipProp(id);
+    }
+	
+	@ResponseBody
+	@RequestMapping(value = "/queryMemberCount", method = RequestMethod.POST)
+	public Response queryMemberCount(@RequestBody PaginationParam paginationParam) {
+//		System.out.println(paginationParam);
+		Integer count = userService.queryMemberCount(paginationParam);
+		return new Response(Constants.SUCCESS_CODE, count.toString());
+    }
+	
+	@ResponseBody
+	@RequestMapping(value = "/queryMember", method = RequestMethod.POST)
+	public List<User> queryMember(@RequestBody PaginationParam paginationParam) {
+//		System.out.println(paginationParam);
+		return userService.queryMember(paginationParam);
+    }
+	
+	@ResponseBody
+	@RequestMapping(value = "/querySomeone", method = RequestMethod.POST)
+	public User querySomeonePartProfile(@RequestParam String nickname) {
+		return userService.querySomeonePartProfile(nickname);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/querySomeoneProfile", method = RequestMethod.GET)
+	public User querySomeoneProfile(@RequestParam String id) {
+		User user = userService.querySomeoneProfile(id);
+		if (user != null && user.isShow()) {
+			return user;
+		} else if (user != null && !user.isShow()) {
+			return new User();
+		} else {
+			return null;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/queryIsShow", method = RequestMethod.GET)
+	public User queryIsShow(@RequestParam String id) {
+		return userService.queryIsShow(id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/changeIsShowState", method = RequestMethod.POST)
+	public Response changeIsShowState(@RequestParam String id, @RequestParam boolean isShow) {
+		System.out.println(isShow);
+		userService.changeIsShowState(id, isShow);
+		return new Response(Constants.SUCCESS_CODE, Constants.SUCCESS);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public Response changePassword(@RequestParam String id, @RequestParam String originPassord, @RequestParam String newPassord) {
+		boolean result = userService.changePassword(id, originPassord, newPassord);
+		if (result) {
+			return new Response(Constants.SUCCESS_CODE, Constants.SUCCESS);
+		} else {
+			return new Response(Constants.FAILURE_CODE, Constants.FAILURE);
+		}
+	}
 }

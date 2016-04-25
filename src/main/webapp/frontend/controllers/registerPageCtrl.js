@@ -44,7 +44,7 @@ define(['app', 'md5'], function(app, md5) {
                 })
                 .error(function() {
                     $scope.hasNickname = true;
-                    notificationService.error("发生未知错误");
+                    notificationService.warning("发生未知错误");
                 })
             }
         }
@@ -63,7 +63,7 @@ define(['app', 'md5'], function(app, md5) {
                 })
                 .error(function() {
                     $scope.hasMobile = true;
-                    notificationService.error("发生未知错误");
+                    notificationService.warning("发生未知错误");
                 })
             }
         }
@@ -82,7 +82,7 @@ define(['app', 'md5'], function(app, md5) {
                     }
             	})
             	.error(function() {
-            		notificationService.error("注册失败, 请重试");
+            		notificationService.warning("注册失败, 请重试");
             	});
 			}
         };

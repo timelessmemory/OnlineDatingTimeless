@@ -27,6 +27,10 @@ define(['app'], function(app) {
                 }
             }
         })
+        .state('profilePage.showMemberProfile', {
+            url: '/showProfile/{id}',
+            templateUrl: 'frontend/partials/profileShowFragment.html',
+        })
         .state('profilePage.showProfile', {
             url: '/showProfile',
             templateUrl: 'frontend/partials/profileShowFragment.html',

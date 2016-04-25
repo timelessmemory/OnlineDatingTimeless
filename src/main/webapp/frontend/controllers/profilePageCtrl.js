@@ -1,43 +1,203 @@
 define(['app'], function(app) {
-	app.controller('profilePageCtrl', ['$scope', '$http', '$state', 'notificationService', 'httpService', function($scope, $http, $state, notificationService, httpService) {
-	    $scope.setting = {
-        isVisit : false,
-        isFinish : 'false'
+	app.controller('profilePageCtrl', ['$scope', '$http', '$state', '$stateParams', 'notificationService', 'httpService', function($scope, $http, $state, $stateParams, notificationService, httpService) {
+	    
+      if ($state.params.id) {
+
+        //访客模式
+        $scope.setting = {
+          isVisit : true,
+        }
+
+        httpService.getWithParam('user/querySomeoneProfile', {
+          id : $state.params.id
+        })
+        .success(function(data) {
+          // console.log(data)
+
+          if (data == '') {
+            notificationService.info('不存在该用户');
+            $state.go('homePage')
+            return;
+          }
+
+          if (data.statusCode == undefined) {
+            if (data.id != null) {
+              $scope.profile = data
+              $scope.tmpAvatar = $scope.profile.avatar
+            } else {
+              notificationService.info('该用户资料仅对自己可见')
+              $state.go('homePage')
+            }
+          }
+        })
+        .error(function() {
+          notificationService.warning('获取资料失败')
+          $scope.profile = {};
+        })
+
+      } else {
+
+        //自身访问
+        $scope.setting = {
+          isVisit : false,
+          isFinish : 'false'
+        }
+
+        $scope.cp = {
+          country : '',
+          province : ''
+        }
+
+        $scope.cpw = {
+          country : '',
+          province : ''
+        }
+
+        $scope.fbs = [];
+        $scope.tbs = [];
+
+        for (var i = 18; i <= 80; i++) {
+          $scope.fbs.push(i);
+          $scope.tbs.push(i);
+        }
+
+        $scope.changeCountry = function() {
+          $scope.profile.country = $scope.cp.country ? $scope.cp.country.name : '';
+          $scope.profile.province = '';
+          $scope.profile.city = '';
+        }
+
+        $scope.changeProvince = function () {
+          $scope.profile.country = $scope.cp.country.name;
+          $scope.profile.province = $scope.cp.province ? $scope.cp.province.name : '';
+          $scope.profile.city = '';
+        }
+
+        $scope.changeCity = function() {
+          $scope.profile.country = $scope.cp.country.name;
+          $scope.profile.province = $scope.cp.province.name;
+        }
+
+        $scope.changeWantCountry = function() {
+          $scope.profile.wantCountry = $scope.cpw.country ? $scope.cpw.country.name : '';
+          $scope.profile.wantProvince = '';
+          $scope.profile.wantCity = '';
+        }
+
+        $scope.changeWantProvince = function () {
+          $scope.profile.wantCountry = $scope.cpw.country.name;
+          $scope.profile.wantProvince = $scope.cpw.province ? $scope.cpw.province.name : '';
+          $scope.profile.wantCity = '';
+        }
+
+        $scope.changeWantCity = function() {
+          $scope.profile.wantCountry = $scope.cpw.country.name;
+          $scope.profile.wantProvince = $scope.cpw.province.name;
+        }
+
+        httpService.getWithParam('user/getProfile', {
+          id : window.sessionStorage.getItem('id')
+        })
+        .success(function(data) {
+          if (data.statusCode == undefined) {
+            $scope.profile = data;
+            $scope.tmpAvatar = $scope.profile.avatar;
+            prepareData();
+          }
+        })
+        .error(function() {
+          notificationService.warning('获取个人资料失败')
+          $scope.profile = {};
+        })
+
+        //do this after get profile
+        function prepareData() {
+          $http.get("frontend/config/location.json").success(function(data) {
+            $scope.countryList = data.country;
+            var pros = [];
+            var prosw = [];
+            for (var i in $scope.countryList) {
+              if ($scope.countryList[i].name == $scope.profile.country) {
+                $scope.cp.country = $scope.countryList[i];
+                pros = $scope.countryList[i].province;
+                break;
+              }
+            }
+
+            for (var i in $scope.countryList) {
+              if ($scope.countryList[i].name == $scope.profile.wantCountry) {
+                $scope.cpw.country = $scope.countryList[i];
+                prosw = $scope.countryList[i].province;
+                break;
+              }
+            }
+
+            for (var j in pros) {
+              if (pros[j].name == $scope.profile.province) {
+                $scope.cp.province = pros[j];
+                break;
+              }
+            }
+
+            for (var j in prosw) {
+              if (prosw[j]['name'] == $scope.profile.wantProvince) {
+                $scope.cpw.province = prosw[j];
+                break;
+              }
+            }
+          });
+        }
+
+        $scope.cancel = function() {
+            $state.go('profilePage.showProfile');
+        }
+
+        $scope.submitForm = function() {
+          httpService.put('user/updateProfile', $scope.profile)
+          .success(function(data) {
+            if (data.statusCode == 200) {
+              notificationService.success('更新成功');
+            } else {
+              notificationService.success('更新失败');
+            }
+            $state.go('profilePage.showProfile');
+          })
+          .error(function() {
+            notificationService.success('更新失败');
+          });
+        }
+
+        $scope.cancelUpload = function() {
+          $scope.setting.isFinish = 'false';
+          $('#photoModal').modal('hide')
+        }
+
+        $scope.confirmUpload = function() {
+          //submit photo
+          httpService.postSimple('user/updateAvatar', {
+            avatar : $scope.profile.avatar,
+            id : $scope.profile.id
+          })
+          .success(function(data) {
+            if (data.statusCode == 200) {
+              notificationService.success('上传成功');
+              $scope.tmpAvatar = $scope.profile.avatar;
+            } else {
+              notificationService.success('上传失败，请稍候重试');
+            }
+          })
+          .error(function() {
+            notificationService.success('上传失败，请稍候重试');
+          })
+
+          $('#photoModal').modal('hide')
+          $scope.setting.isFinish = 'false';
+        }
+
       }
-
-      $scope.cp = {
-        country : '',
-        province : ''
-      }
-
-      $scope.cpw = {
-        country : '',
-        province : ''
-      }
-
-      $scope.fbs = [];
-      $scope.tbs = [];
-
-      for (var i = 18; i <= 80; i++) {
-        $scope.fbs.push(i);
-        $scope.tbs.push(i);
-      }
-
-      httpService.getWithParam('user/getProfile', {
-        id : window.sessionStorage.getItem('id')
-      })
-      .success(function(data) {
-        $scope.profile = data;
-        $scope.tmpAvatar = $scope.profile.avatar;
-        prepareData();
-      })
-      .error(function() {
-        notificationService.error('获取个人资料失败')
-        $scope.profile = {};
-      })
 
       // $scope.profile = {
-      // 	avatar : 'frontend/images/default.jpg',
+      //  avatar : 'frontend/images/default.jpg',
       //   nickname : 'timeless',
       //   realName : 'lj',
       //   country : '中国',
@@ -66,118 +226,6 @@ define(['app'], function(app) {
       //   wantAgeTo : 25,
       //   wantEducation : '本科'
       // }
-
-      $scope.changeCountry = function() {
-        $scope.profile.province = '';
-        $scope.profile.city = '';
-      }
-
-      $scope.changeProvince = function () {
-        $scope.profile.city = '';
-      }
-
-      $scope.changeCity = function() {
-        $scope.profile.country = $scope.cp.country.name;
-        $scope.profile.province = $scope.cp.province.name;
-      }
-
-      $scope.changeWantCountry = function() {
-        $scope.profile.wantProvince = '';
-        $scope.profile.wantCity = '';
-      }
-
-      $scope.changeWantProvince = function () {
-        $scope.profile.wantCity = '';
-      }
-
-      $scope.changeWantCity = function() {
-        $scope.profile.wantCountry = $scope.cpw.country.name;
-        $scope.profile.wantProvince = $scope.cpw.province.name;
-      }
-
-      //do this after get profile
-      function prepareData() {
-        $http.get("frontend/config/location.json").success(function(data) {
-          $scope.countryList = data.country;
-          var pros = [];
-          var prosw = [];
-          for (var i in $scope.countryList) {
-            if ($scope.countryList[i].name == $scope.profile.country) {
-              $scope.cp.country = $scope.countryList[i];
-              pros = $scope.countryList[i].province;
-              break;
-            }
-          }
-
-          for (var i in $scope.countryList) {
-            if ($scope.countryList[i].name == $scope.profile.wantCountry) {
-              $scope.cpw.country = $scope.countryList[i];
-              prosw = $scope.countryList[i].province;
-              break;
-            }
-          }
-
-          for (var j in pros) {
-            if (pros[j].name == $scope.profile.province) {
-              $scope.cp.province = pros[j];
-              break;
-            }
-          }
-
-          for (var j in pros) {
-            if (prosw[j].name == $scope.profile.wantProvince) {
-              $scope.cpw.province = prosw[j];
-              break;
-            }
-          }
-        });
-      }
-
-      $scope.cancel = function() {
-          $state.go('profilePage.showProfile');
-      }
-
-      $scope.submitForm = function() {
-        httpService.put('user/updateProfile', $scope.profile)
-        .success(function(data) {
-          if (data.statusCode == 200) {
-            notificationService.success('更新成功');
-          } else {
-            notificationService.success('更新失败');
-          }
-          $state.go('profilePage.showProfile');
-        })
-        .error(function() {
-          notificationService.success('更新失败');
-        });
-      }
-
-      $scope.cancelUpload = function() {
-        $scope.setting.isFinish = 'false';
-        $('#photoModal').modal('hide')
-      }
-
-      $scope.confirmUpload = function() {
-        //submit photo
-        httpService.postSimple('user/updateAvatar', {
-          avatar : $scope.profile.avatar,
-          id : $scope.profile.id
-        })
-        .success(function(data) {
-          if (data.statusCode == 200) {
-            notificationService.success('上传成功');
-            $scope.tmpAvatar = $scope.profile.avatar;
-          } else {
-            notificationService.success('上传失败，请稍候重试');
-          }
-        })
-        .error(function() {
-          notificationService.success('上传失败，请稍候重试');
-        })
-
-        $('#photoModal').modal('hide')
-        $scope.setting.isFinish = 'false';
-      }
 
 	}])
 })

@@ -24,8 +24,8 @@
                     <div class="col-sm-9">
                       <div> 
                           <select class="btn btn-info btn-sm" style="margin-top:-3px;margin-left:-103px;" ng-model="formData.gender">
-                            <option value="man">男朋友</option>
-                            <option value="woman">女朋友</option>
+                            <option value="男">男朋友</option>
+                            <option value="女">女朋友</option>
                           </select>
                       </div>
                     </div>
@@ -128,7 +128,7 @@
               </form>
           </div>
     </uib-tab>
-    <uib-tab heading="昵称查询" select="select()">
+    <uib-tab heading="昵称查询(VIP)" disable="!isVIP">
         <div class="row">
           <div class="col-sm-12">
             <div class="search-wrapper">
@@ -151,7 +151,7 @@
         <div class="row" style="margin-top:60px;">
           <div class="col-sm-4">
             <a href="#" style="cursor:pointer;">
-              <img class="img-rounded image-photo" ng-src="{{ item.profile.photo }}" />
+              <img class="img-rounded image-photo" ng-src="{{ item.profile.avatar }}" />
             </a>
           </div>
           <div class="col-sm-8">
@@ -185,7 +185,7 @@
               </div>
             </div>
             <div class="row go-home">
-              <button class="btn btn-sm btn-info" style="margin-left: 15px;margin-top:5px;">
+              <button class="btn btn-sm btn-info" style="margin-left: 15px;margin-top:5px;" ng-click="goTo(item.profile.id)">
                 <span class="glyphicon glyphicon-home"></span> &nbsp;去看看
               </button>
             </div>
@@ -196,7 +196,7 @@
     </div>
   </div>
   <div class="row" style="margin-left:350px;">
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages">
+    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="formData.pageSize">
     </uib-pagination>
     <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
   </div>

@@ -53,8 +53,9 @@ public class User {
 	private Integer wantAgeTo;
 	private String wantEducation;
 	private Date registerDate = new Date();
-	private Date LastLoginTime;
-	private boolean isVIP;
+	private Date lastLoginTime = new Date();
+	private boolean isVIP = false;
+	private boolean isShow = true;
 	
 	public String getId() {
 		return id;
@@ -262,16 +263,22 @@ public class User {
 		this.registerDate = registerDate;
 	}
 	public Date getLastLoginTime() {
-		return LastLoginTime;
+		return lastLoginTime;
 	}
 	public void setLastLoginTime(Date lastLoginTime) {
-		LastLoginTime = lastLoginTime;
+		lastLoginTime = lastLoginTime;
 	}
 	public boolean isVIP() {
 		return isVIP;
 	}
 	public void setVIP(boolean isVIP) {
 		this.isVIP = isVIP;
+	}
+	public boolean isShow() {
+		return isShow;
+	}
+	public void setShow(boolean isShow) {
+		this.isShow = isShow;
 	}
 	
 	@Override
@@ -292,6 +299,7 @@ public class User {
 				+ wantStature + ", wantSalary=" + wantSalary + ", wantAgeFrom="
 				+ wantAgeFrom + ", wantAgeTo=" + wantAgeTo + ", wantEducation="
 				+ wantEducation + ", registerDate=" + registerDate
-				+ ", LastLoginTime=" + LastLoginTime + ", isVIP=" + isVIP + "]";
+				+ ", LastLoginTime=" + lastLoginTime + ", isVIP=" + isVIP
+				+ ", isShow=" + isShow + "]";
 	}
 }

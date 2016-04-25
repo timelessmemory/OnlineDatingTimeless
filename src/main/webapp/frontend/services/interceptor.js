@@ -17,14 +17,17 @@ define(['app'], function(app) {
 
                   // console.log(response.config.url)
 
-                  if (response.data.statusCode && (response.data.statusCode == 100 || response.data.statusCode == 120) ) {
+                  if (response && response.data.statusCode && (response.data.statusCode == 100 || response.data.statusCode == 120) ) {
                       window.sessionStorage.clear();
                       cookieService.delCookie('accessToken');
-                      notificationService.success("登陆超时, 请重新登录");
+                      notificationService.info("登陆超时, 请重新登录");
                       $timeout(function() {
                           $location.url('/loginPage');
                       }, 3000)
-                      return;
+                  }
+
+                  if (response && response.data.statusCode && (response.data.statusCode == 500)) {
+                      notificationService.warning("发生未知错误，code[500]");
                   }
                }
                

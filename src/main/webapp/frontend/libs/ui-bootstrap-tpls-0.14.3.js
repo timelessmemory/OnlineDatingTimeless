@@ -4492,7 +4492,7 @@ angular.module('ui.bootstrap.pagination', [])
 }])
 
 .constant('uibPaginationConfig', {
-  itemsPerPage: 10,
+  itemsPerPage: 18,
   boundaryLinks: false,
   directionLinks: true,
   firstText: '首页',
