@@ -9,18 +9,18 @@ package com.ljf.bean;
  */
 
 public class Photo {
-	private String id;
+	private String photoId;
 	private String url;
 	private String description;
 	
-	public String getId() {
-		return id;
+	public String getPhotoId() {
+		return photoId;
 	}
-	
-	public void setId(String id) {
-		this.id = id;
+
+	public void setPhotoId(String photoId) {
+		this.photoId = photoId;
 	}
-	
+
 	public String getUrl() {
 		return url;
 	}
@@ -39,7 +39,7 @@ public class Photo {
 	
 	@Override
 	public String toString() {
-		return "Photo [id=" + id + ", url=" + url + ", description="
+		return "Photo [photoId=" + photoId + ", url=" + url + ", description="
 				+ description + "]";
 	}
 }

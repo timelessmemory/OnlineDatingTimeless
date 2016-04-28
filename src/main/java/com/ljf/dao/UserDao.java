@@ -32,4 +32,5 @@ public interface UserDao {
 	public void updateIsShowById(String id, boolean isShow);
 	public User findByIdAndPassword(String id, String originPassword);
 	public void UpdatePassword(String id, String newPassword);
+	public void updatelastLoginTime(String mobile);
 }

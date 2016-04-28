@@ -10,6 +10,10 @@ define(['app'], function(app) {
 				window.sessionStorage.removeItem('currentPage')
 			}
 
+			if (fromState.name != '' && toState.name == 'albumPage') {
+				window.sessionStorage.removeItem('currentPageAlbum')
+			}
+
         	if (toState.name == 'loginPage' || toState.name == 'homePage' || toState.name == 'registerPage') return;
 
 	        if (window.sessionStorage && window.sessionStorage.getItem('accessToken') == null) {

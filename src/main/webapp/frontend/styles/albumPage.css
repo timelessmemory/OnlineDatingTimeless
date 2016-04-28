@@ -46,7 +46,7 @@
 }
 
 .manageBar .manage-mode {
-  z-index: 999;
+  z-index: 888;
   background-color: #2E8DED;
   height: 48px;
   position: fixed;

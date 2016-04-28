@@ -1,5 +1,5 @@
 define(['app'], function(app) {
-    app.directive("custImg", function() {
+    app.directive("custImg", ['httpService', 'notificationService', function(httpService, notificationService) {
         return {
             restrict: 'E',
             replace: true,
@@ -11,14 +11,15 @@ define(['app'], function(app) {
               description : '=',
               isManageMode : '=',
               paramTags : '=',
-              tagAll : '='
+              tagAll : '=',
+              refresh : '&'
             },
             templateUrl : 'frontend/tmpls/custImg.html',
             link: function(scope, elem, attrs) {
               scope.vm = {
                 tag : false,
                 des :　scope.description,
-                isEdit : false
+                isEdit : false,
               };
 
               scope.select = function() {
@@ -56,8 +57,23 @@ define(['app'], function(app) {
               }
 
               scope.modify = function() {
-                console.log(scope.id)
-                console.log(scope.vm.des)
+                httpService.postSimple('album/modifyPhotoInfo', {
+                  userId : window.sessionStorage.getItem('id'),
+                  photoId : scope.id,
+                  description : scope.vm.des
+                })
+                .success(function(data) {
+                  if (data.statusCode == 200) {
+                    notificationService.info('修改照片信息成功')
+                  } else {
+                    notificationService.info('修改照片信息失败')
+                  }
+                  scope.vm.isEdit = false;
+                  scope.refresh()
+                })
+                .error(function() {
+                  scope.refresh()
+                })
               }
 
               var s = {
@@ -119,5 +135,5 @@ define(['app'], function(app) {
               });
             }
         };
-    });
+    }]);
 })

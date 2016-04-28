@@ -150,7 +150,7 @@
       <div class="col-sm-4" ng-repeat="item in members">
         <div class="row" style="margin-top:60px;">
           <div class="col-sm-4">
-            <a href="#" style="cursor:pointer;">
+            <a href="javascript:void(0);" ng-click="goTo(item.profile.id)" style="cursor:pointer;">
               <img class="img-rounded image-photo" ng-src="{{ item.profile.avatar }}" />
             </a>
           </div>

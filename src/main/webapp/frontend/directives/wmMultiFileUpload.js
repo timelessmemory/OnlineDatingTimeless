@@ -1,5 +1,5 @@
 define(['app'], function(app) {
-	app.directive('wmMultiFileUpload', ['uploadService', 'notificationService', function(uploadService, notificationService) {
+	app.directive('wmMultiFileUpload', ['uploadService', 'notificationService', 'GuidService', function(uploadService, notificationService, GuidService) {
       return {
         restrict: 'A',
         scope: {
@@ -41,8 +41,9 @@ define(['app'], function(app) {
 
                   for (var i in urls) {
                     var obj = {
-                      photo : 'http://' + urls[i],
-                      des : ''
+                      url : 'http://' + urls[i],
+                      description : '',
+                      photoId : GuidService.guid()
                     }
                     rs[i] = obj;
                   }

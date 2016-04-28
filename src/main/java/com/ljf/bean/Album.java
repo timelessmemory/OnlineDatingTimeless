@@ -3,6 +3,8 @@ package com.ljf.bean;
 import java.util.List;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * <p>Title: Album.java<£¯p>
@@ -13,7 +15,9 @@ import org.bson.types.ObjectId;
  * @version 1.0
  */
 
+@Document(collection = "album")
 public class Album {
+	@Id
 	private ObjectId id;
 	private String userId;
 	private List<Photo> albums;

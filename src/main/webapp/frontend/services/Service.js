@@ -1,1 +1,1 @@
-define(['services/interceptor', 'services/dateService', 'services/notificationService', 'services/uploadService', 'services/httpService', 'services/cookieService'], function() {})
+define(['services/interceptor', 'services/dateService', 'services/notificationService', 'services/uploadService', 'services/httpService', 'services/cookieService', 'services/GuidService'], function() {})

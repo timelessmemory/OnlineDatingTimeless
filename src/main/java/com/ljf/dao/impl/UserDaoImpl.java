@@ -1,5 +1,6 @@
 package com.ljf.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -50,6 +51,7 @@ public class UserDaoImpl implements UserDao {
 		if (user == null) {
 			return "";
 		} else {
+			updatelastLoginTime(mobile);
 			return user.getId();
 		}
 	}
@@ -266,6 +268,14 @@ public class UserDaoImpl implements UserDao {
 		query.addCriteria(Criteria.where("id").is(id));
 		Update update = new Update();
 		update.set("password", newPassword);
+		mongoTemplate.updateFirst(query, update, User.class);
+	}
+	
+	public void updatelastLoginTime(String mobile) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("mobile").is(mobile));
+		Update update = new Update();
+		update.set("lastLoginTime", new Date());
 		mongoTemplate.updateFirst(query, update, User.class);
 	}
 }

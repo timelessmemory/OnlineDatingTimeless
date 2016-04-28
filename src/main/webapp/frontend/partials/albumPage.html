@@ -19,17 +19,22 @@
       </div>
     </div>
     <div class="container album">
-      <div class="row" ng-if="!setting.isManageMode">
+      <div class="row" ng-if="!setting.isManageMode && albumArray.length > 0">
         <div class="col-sm-6">
           <button class="btn btn-info btn-sm" style="margin-top:5px;" ng-click="changeMode()">管理模式</button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3 top-distance" ng-repeat="item in albumArray">
-          <cust-img album-array="albumArray" is-manage-mode="setting.isManageMode" param-tags="paramTags" tag-all="tag.all" url="item.url"
-          description="item.description" vm="item.vm" id="item.id">
+          <cust-img refresh="refresh()" album-array="albumArray" is-manage-mode="setting.isManageMode" param-tags="paramTags" tag-all="tag.all" url="item.url"
+          description="item.description" vm="item.vm" id="item.photoId">
           </cust-img>
         </div>
+      </div>
+      <div class="row" style="margin-left:-5px;">
+        <uib-pagination total-items="bigTotalItems" ng-model="s.bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="formData.pageSize">
+        </uib-pagination>
+        <pre>Page: {{s.bigCurrentPage}} / {{numPages}}</pre>
       </div>
     </div>
   </uib-tab>
@@ -41,11 +46,11 @@
           <div class="col-sm-3" style="margin-left: 41px;" ng-repeat="p in vm.albums track by $index">
             <div class="photo-part">
                 <div class="photo-part-content">
-                  <img class="img-prev" alt="174 X 214" ng-src="{{p.photo}}" />
+                  <img class="img-prev" alt="174 X 214" ng-src="{{p.url}}" />
                 </div>
                 <div style="margin-left: 8px;">
                   <label>添加描述:</label>
-                  <input type="text" ng-model="p.des" class="form-control" style="display:inline-block;width:74%;height:27px;">
+                  <input type="text" ng-model="p.description" class="form-control" style="display:inline-block;width:74%;height:27px;">
                 </div>
             </div>
           </div>
