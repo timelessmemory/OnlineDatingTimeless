@@ -1,5 +1,10 @@
-# OnlineDatingTimeless
-Dating website which is built by maven, mainly uses java, spring, angularjs, requirejs, bootstrap and so on.
+# 婚恋网站Timeless
+
+## 补充
+### 评论模块暂未添加 已实现demo
+### 即时聊天模块暂未添加 考虑使用websocket实现， 已实现demo
+### 支付模块考虑接入三方，如微信，支付宝支付接口
+
 ## result
 ![](http://img.blog.csdn.net/20160615110859106?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 
