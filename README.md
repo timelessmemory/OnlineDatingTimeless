@@ -1,5 +1,8 @@
 # 婚恋网站Timeless
 
+本系统名为永恒网，是基于Java和AngularJS的婚恋网站。项目由Maven构建，在技术上主要使用了Angularjs和SpringMVC技术。系统整体开发主要包括前台页面的Web设计与后台管理。开发工具包括Eclipse、Sublime、Google浏览器、Postman等。系统主要包括前台Web以及后台管理，前台实现的功能包括登录、注册、查看成功案例、根据条件搜索、个人资料、头像上传、充值会员、相册、留言、人工红娘服务预约、个人设置等；后台主要实现对用户数据、相册数据以及留言数据的管理功能。
+系统整体设计是前后端完全分离，前台使用Angularjs的路由机制进行页面跳转，Requirejs进行模块化开发，并且使用Grunt对JS及CSS文件进行压缩合并，后台提供Restful风格的纯API给前台使用，采用Log4j进行日志的记录，由SpringMVC进行请求映射，spring管理Dao，Service，Controller。另外，用户登录验证采用基于Token的认证方式，不使用传统的Session进行验证，这种方式增强了系统的安全性并且可以防止CSRF攻击。图片的管理也是交由第三方云平台“七牛”进行管理。
+
 ## 补充
 ### 评论模块暂未添加 已实现demo
 ### 即时聊天模块暂未添加 考虑使用websocket实现， 已实现demo
